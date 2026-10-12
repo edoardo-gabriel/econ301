@@ -65,6 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     host.appendChild(ul);
   });
+  var refs = window.REFERENCE || [];
+  if (refs.length) {
+    var hh = document.createElement('h3'); hh.textContent = 'Reference'; host.appendChild(hh);
+    var ul2 = document.createElement('ul');
+    refs.forEach(function (t) { var li = document.createElement('li'); li.innerHTML = '<a href="' + t.href + '">' + t.title + '</a>: ' + t.blurb; ul2.appendChild(li); });
+    host.appendChild(ul2);
+  }
 });
 </script>
 </body>

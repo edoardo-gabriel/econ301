@@ -15,7 +15,9 @@
 <script defer src="assets/plot.js"></script>
 <script defer src="assets/econ.js"></script>
 <script defer src="assets/questions.js"></script>
+<script defer src="assets/figures.js"></script>
 <script defer src="assets/quiz.js"></script>
+<script defer src="assets/drills.js"></script>
 <script defer src="assets/pages/optimal.js"></script>
 </head>
 <body data-page="optimal">
@@ -93,6 +95,40 @@
       <p><b>If she doesn't necessarily maximize:</b> nothing. She might consume \(a=0\) with any income \(Y\ge0\) (she's just not optimizing).</p>
     </details>
   </div>
+
+  <h2>Working backwards</h2>
+  <p>Exams often give you the <em>answer</em> (the optimal bundle, or the MRS at the optimum) and ask you to recover the <em>inputs</em>: a price, income, or the other quantity. Use the same three facts, in reverse:</p>
+  <ol>
+    <li><b>Optimality.</b> At an interior optimum \(|\mathrm{MRS}_{ab}|=p_a/p_b\). For perfect complements use the kink condition instead.</li>
+    <li><b>The MRS formula.</b> For \(a^\alpha b^\beta\), \(|\mathrm{MRS}_{ab}|=\dfrac{\alpha b}{\beta a}\).</li>
+    <li><b>The budget line.</b> The optimum spends all income: \(Y=p_a a^*+p_b b^*\).</li>
+  </ol>
+  <div class="exercise">
+    <h4>Worked example</h4>
+    <p>Consumer C has \(u(a,b)=a^2b\) and faces \(p_a=4\). At the optimal choice \(a^*=3\) and \(\mathrm{MRS}_{ab}=-2\). Find \(p_b\), \(b^*\) and income \(Y\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p><b>Price:</b> \(|\mathrm{MRS}|=p_a/p_b\Rightarrow p_b=4/2=2\).</p>
+      <p><b>Quantity:</b> for \(a^2b\), \(|\mathrm{MRS}|=\frac{2b}{a}\). Setting \(\frac{2b}{3}=2\) gives \(b^*=3\).</p>
+      <p><b>Income:</b> \(Y=4(3)+2(3)=18\). Check: Cobb-Douglas spends \(\frac{\alpha}{\alpha+\beta}=\frac23\) of income on \(a\), and \(12/18=\frac23\). &#10003;</p>
+    </details>
+  </div>
+  <p>The same idea works with the other utility types: given the optimal bundle and prices you can find income, and given \(b^*\) for perfect complements you can find \(a^*\) from the kink.</p>
+  <div class="num-set" data-gens="inv,invpc,invps" data-label="Work backwards"></div>
+
+  <h2>Reading optimality from a graph</h2>
+  <p>Exam graphs usually have <em>no numbers</em>. The slope of the indifference curve at a point is \(|\mathrm{MRS}_{ab}|\), and the slope of the budget line is \(p_a/p_b\). Compare the two slopes:</p>
+  <table style="border-collapse:collapse;width:100%;font-size:.95rem">
+    <tr style="text-align:left;color:var(--muted)"><th style="padding:6px">At the bundle \(A\) on the budget line</th><th>Then</th><th>She should…</th></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">curve <b>steeper</b> than the budget line</td><td>\(|\mathrm{MRS}|&gt;p_a/p_b\)</td><td>buy more \(a\), less \(b\)</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">curve <b>flatter</b> than the budget line</td><td>\(|\mathrm{MRS}|&lt;p_a/p_b\)</td><td>buy more \(b\), less \(a\)</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">curve <b>just touches</b> the line (tangent)</td><td>\(|\mathrm{MRS}|=p_a/p_b\)</td><td>stay: optimal (interior)</td></tr>
+  </table>
+  <ul>
+    <li>If the curve <em>crosses</em> the budget line at \(A\), a higher curve is still reachable, so \(A\) is not optimal.</li>
+    <li>A bundle <em>inside</em> the budget set leaves money unspent, so with more-is-better it is not optimal either.</li>
+    <li>If a question shows <b>no indifference curve</b>, you can't compare \(|\mathrm{MRS}|\) with \(p_a/p_b\). The answer is <b>uncertain</b>.</li>
+  </ul>
+  <div class="num-set" data-gens="gcross,gwhich,gcross" data-label="Read the graph"></div>
 
   <h2>Check yourself</h2>
   <div class="quiz-set" data-topic="optimal"></div>

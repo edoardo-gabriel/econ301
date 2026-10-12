@@ -529,6 +529,105 @@
         { t: R`The compensated budget line always passes through the original bundle \(A\).`, a: false }
       ],
       expl: R`The compensated line has the <em>new</em> price ratio and is shifted until it just touches the <em>original</em> indifference curve, so utility at \(B\) equals utility at \(A\). It passes through \(A\) only in special cases (for example, at the kink with perfect complements, where \(B=A\)).`
+    },
+
+    // ============================ READ-THE-GRAPH, WORK-BACKWARDS, CONCEPT (added after the F26 exam) ============================
+    {
+      id: 'g01', topic: 'optimal', type: 'tf', three: true,
+      q: R`The figure shows a consumer's indifference curve and budget constraint. She is currently consuming at the intersection \(A\). TRUE, FALSE or UNCERTAIN?`,
+      fig: { kind: 'cross', al: 1, be: 1, pa: 1, pb: 1, Y: 12, f: 0.8 },
+      items: [
+        { t: R`\(A\) is the optimal choice for the consumer.`, a: false },
+        { t: R`\(|\mathrm{MRS}_{ab}|>\dfrac{p_a}{p_b}\) at \(A\).`, a: false },
+        { t: R`She could raise her utility by buying more of \(b\) and less of \(a\).`, a: true }
+      ],
+      expl: R`At \(A\) the indifference curve is <em>flatter</em> than the budget line, so \(|\mathrm{MRS}_{ab}|&lt;p_a/p_b\): she values \(a\) less than the market does. Selling some \(a\) to buy \(b\) puts her on a higher indifference curve, so \(A\) is not optimal.`
+    },
+    {
+      id: 'g02', topic: 'optimal', type: 'tf', three: true,
+      q: R`The figure shows a consumer's indifference curve and budget constraint. She is currently consuming at the intersection \(A\). TRUE, FALSE or UNCERTAIN?`,
+      fig: { kind: 'cross', al: 1, be: 2, pa: 2, pb: 1, Y: 12, f: 0.12 },
+      items: [
+        { t: R`\(A\) is the optimal choice for the consumer.`, a: false },
+        { t: R`\(|\mathrm{MRS}_{ab}|>\dfrac{p_a}{p_b}\) at \(A\).`, a: true },
+        { t: R`She could raise her utility by buying more of \(b\) and less of \(a\).`, a: false }
+      ],
+      expl: R`At \(A\) the indifference curve is <em>steeper</em> than the budget line, so \(|\mathrm{MRS}_{ab}|>p_a/p_b\): she values \(a\) more than the market charges. She should buy more \(a\) and less \(b\), not the reverse.`
+    },
+    {
+      id: 'g03', topic: 'optimal', type: 'tf', three: true,
+      q: R`The figure shows a consumer's budget constraint and the bundle \(A\) she is currently choosing. <strong>No indifference curve is drawn.</strong> TRUE, FALSE or UNCERTAIN?`,
+      fig: { kind: 'cross', al: 1, be: 1, pa: 1, pb: 2, Y: 12, f: 0.35, show: 'budget' },
+      items: [
+        { t: R`\(A\) is the optimal choice for the consumer.`, a: 'U' },
+        { t: R`\(|\mathrm{MRS}_{ab}|>\dfrac{p_a}{p_b}\) at \(A\).`, a: 'U' },
+        { t: R`\(A\) is affordable.`, a: true }
+      ],
+      expl: R`Without an indifference curve we know nothing about her preferences, so we cannot compare \(|\mathrm{MRS}_{ab}|\) with \(p_a/p_b\): <b>uncertain</b>. But \(A\) is on the budget line, so it is affordable.`
+    },
+    {
+      id: 'g04', topic: 'optimal', type: 'mc', fixed: true,
+      q: 'The figure shows a consumer\'s budget constraint and the indifference curve through each of four bundles. Which bundle is her optimal choice?',
+      fig: { kind: 'which', al: 1, be: 1, pa: 1, pb: 1, Y: 12, fS: 0.82, fI: 0.5, pts: [{ k: 'S', l: 'A' }, { k: 'T', l: 'B' }, { k: 'O', l: 'C' }, { k: 'I', l: 'D' }] },
+      choices: ['Bundle A', 'Bundle B', 'Bundle C', 'Bundle D'], answer: 1,
+      expl: R`Bundle B is on the budget line and its indifference curve just touches the line: the highest curve she can reach. A is affordable but a higher curve is available. C is on a higher curve but outside the budget set. D is inside the budget set (money left over, and more is better).`
+    },
+    {
+      id: 'g05', topic: 'budget', type: 'mc',
+      q: 'The dashed line is a consumer\'s original budget constraint (good \\(a\\) on the horizontal axis). The solid line is the new one. Exactly one thing changed. What was it?',
+      fig: { kind: 'shift', from: { pa: 2, pb: 4, Y: 24 }, to: { pa: 2, pb: 2, Y: 24 } },
+      choices: ['The price of \\(b\\) fell', 'The price of \\(a\\) fell', 'Income rose', 'The price of \\(b\\) rose'], answer: 0,
+      expl: R`The horizontal intercept \(Y/p_a\) did not move, but the vertical intercept \(Y/p_b\) moved up: only \(p_b\) changed, and it fell. (If income had changed, both intercepts would have moved.)`
+    },
+    {
+      id: 'g06', topic: 'utility', type: 'mc',
+      q: 'The figure shows three indifference curves of one consumer. Which description fits her preferences?',
+      fig: { kind: 'shape', type: 'pc', al: 1, be: 2 },
+      choices: ['Cobb-Douglas (smooth curves bowed toward the origin)', 'Perfect substitutes (straight lines)', 'Perfect complements (L-shaped)', 'Not convex (bowed away from the origin)'], answer: 2,
+      expl: R`L-shaped curves with a kink: she uses the two goods in a fixed ratio, and extra units of one good alone add nothing. The MRS is undefined at the kink. These are perfect complements, \(u=\min\{\alpha a,\beta b\}\).`
+    },
+    {
+      id: 'g07', topic: 'preferences', type: 'pick',
+      q: R`Yesterday \(p_a=4\), \(p_b=3\), income \(Y=40\), and the consumer chose \(A=(4,8)\). Today she has the same preferences and income, but \(p_a=2\) and \(p_b=4\). The dashed line is yesterday's budget line and the solid line is today's. <strong>Tap a bundle on today's budget line that could be her new optimal choice</strong>, then check.`,
+      fig: { kind: 'pick', old: { pa: 4, pb: 3, Y: 40 }, nw: { pa: 2, pb: 4, Y: 40 }, A: [4, 8] },
+      expl: R`At the new prices \(A\) costs \(2(4)+4(8)=40\): it is still affordable (it is on today's line). So her new choice must be at least as good as \(A\). A bundle on today's line with \(a<4\) (and so \(b>8\)) was affordable yesterday with money left over, for example \((2,9)\) costs \(4(2)+3(9)=35<40\), so yesterday she revealed that \(A\) is strictly better, and she wouldn't choose it now. What remains is \(a\ge4\), the thick segment.`
+    },
+    {
+      id: 'c01', topic: 'preferences', type: 'mc', fixed: true,
+      q: R`Suppose we observe a rational consumer make the following choices: \(C(a,b)=a\), \(C(a,c)=c\), \(C(c,d)=c\). What is \(C(a,b,c,d)\)?`,
+      choices: [R`\(a\)`, R`\(b\)`, R`\(c\)`, R`\(d\)`], answer: 2,
+      expl: R`The choices reveal \(a\succ b\), \(c\succ a\) and \(c\succ d\). By transitivity \(c\succ a\succ b\), and \(c\succ d\), so \(c\) beats everything else. A rational consumer picks her favorite available option: \(C(a,b,c,d)=c\).`
+    },
+    {
+      id: 't01', topic: 'utility', type: 'tf', three: true,
+      q: R`Consumer A has utility \(u(a,b)=2ab\) over positive quantities. For each function \(g\), decide: does \(v(a,b)=g(u(a,b))\) represent <b>exactly the same preferences</b> as \(u\) <b>and</b> have the same \(\mathrm{MRS}_{ab}\)? TRUE, FALSE or UNCERTAIN?`,
+      items: [
+        { t: R`\(g(x)=\tfrac12\sqrt{x}+3\)`, a: true },
+        { t: R`\(g(x)=10-2x\)`, a: false },
+        { t: R`\(g(x)=x^{2}\)`, a: true }
+      ],
+      expl: R`A function that is strictly <em>increasing</em> preserves the ranking of every pair of bundles, so the indifference curves, and with them the MRS, are unchanged. \(\tfrac12\sqrt{x}+3\) and \(x^2\) (for \(x>0\)) are increasing. \(10-2x\) is decreasing: it keeps the same indifference curves (so the same MRS) but <em>reverses</em> the ranking, so the preferences are different.`
+    },
+    {
+      id: 'i01', topic: 'optimal', type: 'num',
+      q: R`Consumer B has Cobb-Douglas utility \(u(a,b)=ab^3\), and the price of \(a\) is \(p_a=3\). At the optimal choice, \(a^*=2\) and \(\mathrm{MRS}_{ab}=-2\). Find \(p_b\), the consumer's income \(Y\), and \(b^*\).`,
+      parts: [{ label: R`\(p_b\)`, answer: 1.5 }, { label: R`Income \(Y\)`, answer: 24 }, { label: R`\(b^*\)`, answer: 12 }],
+      sol: R`<b>Price of \(b\):</b> at the optimum \(|\mathrm{MRS}|=p_a/p_b\), so \(p_b=3/2=1.5\).<br>
+        <b>Quantity of \(b\):</b> for \(ab^3\), \(|\mathrm{MRS}|=\frac{b}{3a}\). Setting it equal to 2 at \(a^*=2\): \(b^*=3\cdot2\cdot2=12\).<br>
+        <b>Income:</b> \(Y=p_a a^*+p_b b^*=3(2)+1.5(12)=24\). (Check: Cobb-Douglas spends \(\frac{3}{4}\) of income on \(b\): \(18/24\). ✓)`
+    },
+    {
+      id: 'i02', topic: 'optimal', type: 'num',
+      q: R`Consumer E has utility \(u(a,b)=\min\{2a,\ b\}\). Prices are \(p_a=3\), \(p_b=2\) and income is \(Y=35\). Find the optimal choice \((a^*,b^*)\). Then suppose income changes so that the new optimal choice has \(b^*=16\): find the new \(a^*\) and the new income.`,
+      parts: [{ label: R`\(a^*\)`, answer: 5 }, { label: R`\(b^*\)`, answer: 10 }, { label: R`new \(a^*\)`, answer: 8 }, { label: R`new \(Y\)`, answer: 56 }],
+      sol: R`Perfect complements sit at the kink \(2a=b\). <b>Original:</b> \(3a+2(2a)=35\Rightarrow a^*=5\), \(b^*=10\).<br>
+        <b>New income:</b> with \(b^*=16\) the kink gives \(a^*=8\), so \(Y=3(8)+2(16)=56\).`
+    },
+    {
+      id: 'i03', topic: 'optimal', type: 'num',
+      q: R`Consumer F has utility \(u(a,b)=3a+2b\). Prices are \(p_a=2\), \(p_b=1\) and income is \(Y=20\). With \(a\) on the horizontal axis, find the slope of the budget constraint, the optimal choice \((a^*,b^*)\), and \(\mathrm{MRS}_{ab}\) at the optimum. (Enter signed numbers.)`,
+      parts: [{ label: 'Budget slope', answer: -2 }, { label: R`\(a^*\)`, answer: 0 }, { label: R`\(b^*\)`, answer: 20 }, { label: R`\(\mathrm{MRS}_{ab}\)`, answer: -1.5 }],
+      sol: R`<b>Slope:</b> \(-p_a/p_b=-2\). <b>Optimum:</b> utility per dollar is \(3/2=1.5\) for \(a\) and \(2/1=2\) for \(b\), so she spends everything on \(b\): \((0,20)\). <b>MRS:</b> constant, \(-3/2\). At this corner \(|\mathrm{MRS}|=1.5&lt;p_a/p_b=2\), so she values \(a\) less than the market does and buys none.`
     }
   ];
 })();

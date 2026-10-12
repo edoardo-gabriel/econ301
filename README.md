@@ -1,21 +1,28 @@
-# Econ 301 Study Hub
+# Intermediate Microeconomics (ECON 301): Study Hub
 
-Static site: plain HTML/CSS/JS, no build step, no backend. Open `index.html` to preview locally
-(math needs internet for KaTeX from a CDN).
+**Live site: https://edoardo-gabriel.github.io/econ301/**
 
-## Weekly update checklist
-1. **Add a topic**: edit `assets/topics.js` (set `status: 'new'` for a NEW badge, `'soon'` for greyed out) and update `window.SITE` (date and note shown on the home page).
-2. **Add a page**: copy an existing page (e.g. `budget.html`), change `data-page`, title and content, and add `assets/pages/<name>.js` for any widgets.
-   - `<div class="pop-marker" data-topic="ID"></div>` triggers a pop quiz when the reader scrolls past it.
-   - `<div class="quiz-set" data-topic="ID"></div>` lists all bank questions for that topic.
-   - `<div class="num-set" data-gens="cd,pc" data-label="..."></div>` adds randomized numeric drills.
-3. **Add questions**: append to `assets/questions.js` (format described at the top of the file). Math is written `\( ... \)` inside `R\`...\``. Money like `$5` can be written plainly.
-4. Worked exercises with solutions: `<div class="exercise"> ... <details class="solution">`.
+A free, unofficial study companion for ECON 301 (Fall 2026). It turns the ideas from lecture and the handouts into interactive graphs, practice questions and worked exercises.
 
-## Files
-- `assets/plot.js` SVG plot helper · `assets/econ.js` utility, MRS, optimum, demand math
-- `assets/quiz.js` quiz engine, pop-ups, random drills · `assets/core.js` header, theme, helpers
+## What's on the site
 
-## Deploy (free)
-- **GitHub Pages**: push the contents of this folder to a repo, then Settings > Pages > Deploy from branch `main`, folder `/ (root)`.
-- **Cloudflare Pages / Netlify**: connect the repo (or drag-and-drop the folder). No build command, publish directory `/`.
+- **Topics**: one page per topic, with short explanations and graphs you can move.
+  - Midterm 1: preferences and choice, budget sets, utility and indifference curves, optimal choice, demand curves.
+  - Midterm 2 (in progress): elasticities, substitution and income effects.
+- **Exercises**: every question in one place, a mock quiz, and drills that generate new numbers every time, including "work backwards" problems and "read the graph" problems.
+- **Math notation**: the symbols we use and what they mean, with a matching game and quizzes.
+- Dark mode, and it works on phones.
+
+## Good to know
+
+- **This is a study aid, not course material.** If anything here disagrees with lecture or the handouts, lecture and the handouts are right. Found a mistake? Tell your TA.
+- **Privacy:** there are no accounts, no tracking and no data collection. Your progress is saved only in your own browser.
+- **Internet needed:** the equations are rendered with [KaTeX](https://katex.org), loaded from a CDN.
+
+## For the course staff
+
+Maintenance and update instructions are in [MAINTAINING.md](MAINTAINING.md).
+
+## License and credits
+
+Built for ECON 301 by your TA. The course content belongs to the course and its instructor. Please don't redistribute the materials as your own.

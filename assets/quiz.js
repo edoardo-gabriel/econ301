@@ -151,27 +151,65 @@
   };
   const genKeys = Object.keys(gens);
 
+  // ---------- generators registry (calculation + graph drills live in drills.js) ----------
+  const genMeta = {};
+  [['cd', 'Cobb-Douglas optimum'], ['pc', 'Perfect complements optimum'], ['ps', 'Perfect substitutes optimum'], ['mrs', 'Compute the MRS'],
+   ['intercept', 'Budget intercepts'], ['market', 'Market demand'], ['elas', 'Own-price elasticity'], ['incel', 'Income elasticity'],
+   ['crossel', 'Cross-price elasticity'], ['sub', 'Substitution & income effects']
+  ].forEach(([k, l]) => { genMeta[k] = { label: l, group: 'calc' }; });
+  function addGen(key, fn, label, group) {
+    gens[key] = fn;
+    if (!genKeys.includes(key)) genKeys.push(key);
+    genMeta[key] = { label, group: group || 'calc' };
+  }
+  function genQuestion(key, label) {
+    const g = gens[key]();
+    g.gen = key; g.topicLabel = label || (genMeta[key] && genMeta[key].label) || 'Practice';
+    if (!g.type) g.type = 'num';
+    return g;
+  }
+
   // ---------- rendering ----------
+  // Accepts 3, -3.5, 1/6, -2/7 and the unicode minus sign.
+  const parseNum = s => {
+    s = String(s).trim().replace(/[−–]/g, '-').replace(/\s+/g, '').replace(',', '.');
+    const m = /^(-?(?:\d+\.?\d*|\.\d+))\/(-?(?:\d+\.?\d*|\.\d+))$/.exec(s);
+    if (m) return parseFloat(m[1]) / parseFloat(m[2]);
+    return /^-?(\d+\.?\d*|\.\d+)$/.test(s) ? parseFloat(s) : NaN;
+  };
+  const kindLabel = q => q.type === 'tf' ? (q.three ? 'True / False / Uncertain' : 'True / False')
+    : q.type === 'num' ? (q.parts ? 'Multi-part' : 'Numeric') : q.type === 'pick' ? 'Click the graph' : 'Multiple choice';
+  const ansWord = a => a === true ? 'True' : a === false ? 'False' : 'Uncertain';
+
   function renderQuestion(q, host, opts = {}) {
     const box = h('div', 'q');
-    const meta = h('div', 'qmeta', `<span>${q.topicLabel || ''}</span><span>${q.type === 'tf' ? 'True / False' : q.type === 'num' ? 'Numeric' : 'Multiple choice'}</span>`);
-    box.append(meta);
-    const body = h('div', 'qtext', q.q.startsWith('<') ? q.q : `<p>${q.q}</p>`);
-    box.append(body);
+    box.append(h('div', 'qmeta', `<span>${q.topicLabel || ''}</span><span>${kindLabel(q)}</span>`));
+    box.append(h('div', 'qtext', q.q.startsWith('<') ? q.q : `<p>${q.q}</p>`));
+    let fig = null;
+    if (q.fig && window.Figures) { const fh = h('div'); box.append(fh); fig = Figures.draw(fh, q.fig); box._fig = fig; }
     const fb = h('div'); // feedback holder
+
+    const addAgain = () => {
+      if (!q.gen) return;
+      const wrap = h('div', 'qfoot');
+      const again = h('button', 'btn small ghost', 'New problem');
+      again.addEventListener('click', () => { box.replaceWith(renderQuestion(genQuestion(q.gen, q.topicLabel), null, opts)); });
+      wrap.append(again); fb.append(wrap);
+    };
     const finish = ok => {
       if (q.id) record(q.id, ok);
       fb.className = 'feedback ' + (ok ? 'good' : 'bad');
       fb.innerHTML = `<strong>${ok ? 'Correct.' : 'Not quite.'}</strong> ${q.expl || ''}`;
+      addAgain();
       typeset(fb);
       opts.onDone && opts.onDone(ok);
     };
 
     if (q.type === 'mc') {
-      const order = shuffle(q.choices.map((c, i) => i));
+      const order = q.fixed ? q.choices.map((c, i) => i) : shuffle(q.choices.map((c, i) => i));
       const wrap = h('div', 'choices');
       order.forEach((ci, pos) => {
-        const b = h('button', 'choice', `<span class="k">${'ABCD'[pos]}.</span><span>${q.choices[ci]}</span>`);
+        const b = h('button', 'choice', (q.fixed ? '' : `<span class="k">${'ABCD'[pos]}.</span>`) + `<span>${q.choices[ci]}</span>`);
         b.addEventListener('click', () => {
           const ok = ci === q.answer;
           wrap.querySelectorAll('button').forEach(x => x.disabled = true);
@@ -182,16 +220,18 @@
         wrap.append(b);
       });
       box.append(wrap);
+
     } else if (q.type === 'tf') {
       const wrap = h('div', 'tf');
+      const vals = q.three ? [['T', true], ['F', false], ['Uncertain', 'U']] : [['T', true], ['F', false]];
       const sel = q.items.map(() => null);
       const rows = q.items.map((it, i) => {
         const row = h('div', 'tf-item', `<div>${it.t}</div>`);
         const btns = h('div', 'tfbtns');
-        ['T', 'F'].forEach(v => {
-          const b = h('button', 'choice', `<span class="k">${v}</span>`);
+        vals.forEach(([label, val]) => {
+          const b = h('button', 'choice', `<span class="k">${label}</span>`);
           b.addEventListener('click', () => {
-            sel[i] = v === 'T';
+            sel[i] = val;
             btns.querySelectorAll('button').forEach(x => x.classList.remove('right'));
             b.classList.add('right');
             check.disabled = sel.some(s => s === null);
@@ -210,57 +250,69 @@
           const ok = sel[i] === it.a; all = all && ok;
           rows[i].classList.add(ok ? 'right' : 'wrong');
           rows[i].querySelectorAll('button').forEach(x => x.disabled = true);
-          const mark = h('span', 'hint', ok ? ' ✓' : ` ✗ (${it.a ? 'True' : 'False'})`);
-          rows[i].firstChild.append(mark);
+          rows[i].firstChild.append(h('span', 'hint', ok ? ' ✓' : ` ✗ (${ansWord(it.a)})`));
         });
         finish(all);
       });
       const foot = h('div', 'qfoot'); foot.append(check);
       box.append(wrap, foot);
+
+    } else if (q.type === 'pick' && fig) {
+      const check = h('button', 'btn small', 'Check my bundle');
+      check.disabled = true;
+      fig.onSelect(() => { check.disabled = false; });
+      check.addEventListener('click', () => { check.disabled = true; const ok = fig.check(); fig.reveal(ok); finish(ok); });
+      const foot = h('div', 'qfoot'); foot.append(check);
+      box.append(foot);
+
     } else if (q.type === 'num') {
-      const row = h('div', 'numrow');
-      const inp = h('input'); inp.type = 'text'; inp.inputMode = 'decimal'; inp.placeholder = 'Your answer';
+      const parts = q.parts || [{ label: '', answer: q.answer, tol: q.tol }];
+      const grid = h('div', 'numgrid');
+      const inputs = parts.map(p => {
+        const w = h('label', 'numpart', p.label ? `<span>${p.label}</span>` : '');
+        const inp = h('input'); inp.type = 'text'; inp.autocomplete = 'off'; inp.placeholder = 'answer';
+        w.append(inp); grid.append(w);
+        return inp;
+      });
+      const foot = h('div', 'qfoot');
       const check = h('button', 'btn small', 'Check');
       const show = h('button', 'btn small ghost', 'Show solution');
-      const again = h('button', 'btn small ghost', 'New problem'); again.style.display = 'none';
-      const submit = () => {
-        const v = parseFloat(inp.value.replace(',', '.'));
-        if (isNaN(v)) { inp.focus(); return; }
-        const tol = q.tol || 0.011;
-        const ok = Math.abs(v - q.answer) <= Math.max(tol, Math.abs(q.answer) * 0.005);
-        inp.disabled = check.disabled = true;
-        finishNum(ok);
-      };
-      const finishNum = ok => {
-        if (q.id) record(q.id, ok);
-        fb.className = 'feedback ' + (ok ? 'good' : 'bad');
-        fb.innerHTML = `<strong>${ok ? 'Correct!' : 'Not quite.'}</strong> The answer is <b>${fmt(q.answer, 4)}</b>.<br>${q.sol}`;
+      const grade = reveal => {
+        let all = true;
+        const lines = parts.map((p, i) => {
+          const v = parseNum(inputs[i].value);
+          const tol = p.tol || q.tol || 0.011;
+          const ok = !reveal && isFinite(v) && Math.abs(v - p.answer) <= Math.max(tol, Math.abs(p.answer) * 0.005);
+          all = all && ok;
+          inputs[i].disabled = true;
+          inputs[i].classList.add(ok ? 'ok' : 'no');
+          return `<li>${p.label ? p.label + ' = ' : ''}<b>${fmt(p.answer, 4)}</b> ${reveal ? '' : ok ? '✓' : '✗'}</li>`;
+        });
+        check.disabled = true; show.style.display = 'none';
+        if (q.id) record(q.id, all);
+        if (all) record('num-' + q.topic, true);
+        fb.className = 'feedback ' + (all ? 'good' : 'bad');
+        fb.innerHTML = `<strong>${all ? 'Correct!' : reveal ? 'Solution' : 'Not quite.'}</strong> ` +
+          (parts.length === 1 ? `The answer is <b>${fmt(parts[0].answer, 4)}</b>.` : `<ul class="ans">${lines.join('')}</ul>`) + `<br>${q.sol || q.expl || ''}`;
+        addAgain();
         typeset(fb);
-        again.style.display = ''; show.style.display = 'none';
-        if (ok) record('num-' + q.topic, true);
+        opts.onDone && opts.onDone(all);
+      };
+      const submit = () => {
+        const bad = inputs.findIndex(i => !isFinite(parseNum(i.value)));
+        if (bad >= 0) { inputs[bad].focus(); return; }
+        grade(false);
       };
       check.addEventListener('click', submit);
-      inp.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
-      show.addEventListener('click', () => { inp.disabled = check.disabled = true; finishNum(false); });
-      again.addEventListener('click', () => {
-        const fresh = gens[q.gen]();
-        fresh.gen = q.gen; fresh.type = 'num'; fresh.topicLabel = q.topicLabel;
-        const nb = renderQuestion(fresh, null, opts);
-        box.replaceWith(nb);
-      });
-      row.append(inp, check, show, again);
-      box.append(row);
+      inputs.forEach(i => i.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); }));
+      show.addEventListener('click', () => grade(true));
+      foot.append(check, show);
+      box.append(grid, foot);
     }
     box.append(fb);
     if (host) host.append(box);
     typeset(box);
     return box;
-  }
-
-  function numQuestion(genKey, label) {
-    const g = gens[genKey]();
-    g.gen = genKey; g.type = 'num'; g.topicLabel = label || 'Practice';
-    return g;
   }
 
   // ---------- topic helpers ----------
@@ -344,7 +396,7 @@
       forTopic(topic).forEach(q => renderQuestion(q, host));
     });
     document.querySelectorAll('.num-set').forEach(host => {
-      host.dataset.gens.split(',').forEach(g => renderQuestion(numQuestion(g.trim(), host.dataset.label), host));
+      host.dataset.gens.split(',').forEach(g => renderQuestion(genQuestion(g.trim(), host.dataset.label), host));
     });
   }
 
@@ -358,6 +410,6 @@
     });
   }
 
-  window.Quiz = { renderQuestion, numQuestion, gens, genKeys, forTopic, progress, popup, shuffle, pick, paintBars, topicLabel };
+  window.Quiz = { renderQuestion, genQuestion, numQuestion: genQuestion, addGen, genMeta, parseNum, gens, genKeys, forTopic, progress, popup, shuffle, pick, paintBars, topicLabel };
   document.addEventListener('DOMContentLoaded', () => { initSets(); initPops(); initFab(); paintBars(); });
 })();

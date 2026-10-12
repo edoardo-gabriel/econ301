@@ -21,3 +21,8 @@ window.TOPICS = [
 
 // Weekly update point #3: shown on the home page.
 window.SITE = { updated: 'October 12, 2026', note: 'Midterm 1 is complete. Midterm 2 has started: elasticities and substitution and income effects are up.' };
+
+// Reference pages (shown in the Topics menu and on the home page).
+window.REFERENCE = [
+  { id: 'notation', href: 'notation.html', title: 'Math notation', blurb: 'The symbols we use and what they mean, with a matching game and quizzes.' }
+];

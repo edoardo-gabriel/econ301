@@ -59,17 +59,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ---- endless drills ----
   const drillHost = document.getElementById('drill');
-  const labels = { cd: 'Cobb-Douglas optimum', pc: 'Perfect complements optimum', ps: 'Perfect substitutes optimum', mrs: 'Compute the MRS', intercept: 'Budget intercepts', market: 'Market demand', elas: 'Own-price elasticity', incel: 'Income elasticity', crossel: 'Cross-price elasticity', sub: 'Substitution & income effects' };
   const dchips = document.getElementById('drill-chips');
-  Quiz.genKeys.forEach(k => {
-    const b = document.createElement('button');
-    b.className = 'chip'; b.textContent = labels[k] || k; b.setAttribute('aria-pressed', 'false');
-    b.addEventListener('click', () => {
-      dchips.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b));
-      drillHost.innerHTML = '';
-      Quiz.renderQuestion(Quiz.numQuestion(k, labels[k]), drillHost);
+  dchips.classList.remove('chips');
+  [['calc', 'Calculations and concepts'], ['graph', 'Read the graph']].forEach(([grp, title]) => {
+    const keys = Quiz.genKeys.filter(k => (Quiz.genMeta[k] || {}).group === grp);
+    if (!keys.length) return;
+    const lab = document.createElement('p'); lab.className = 'hint'; lab.style.margin = '14px 0 0'; lab.textContent = title;
+    const row = document.createElement('div'); row.className = 'chips';
+    keys.forEach(k => {
+      const b = document.createElement('button');
+      b.className = 'chip'; b.textContent = Quiz.genMeta[k].label; b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => {
+        dchips.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === b));
+        drillHost.innerHTML = '';
+        Quiz.renderQuestion(Quiz.genQuestion(k, Quiz.genMeta[k].label), drillHost);
+      });
+      row.append(b);
     });
-    dchips.append(b);
+    dchips.append(lab, row);
   });
 
   document.getElementById('reset-btn').addEventListener('click', () => {

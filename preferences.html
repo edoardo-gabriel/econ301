@@ -15,7 +15,9 @@
 <script defer src="assets/plot.js"></script>
 <script defer src="assets/econ.js"></script>
 <script defer src="assets/questions.js"></script>
+<script defer src="assets/figures.js"></script>
 <script defer src="assets/quiz.js"></script>
+<script defer src="assets/drills.js"></script>
 <script defer src="assets/pages/preferences.js"></script>
 </head>
 <body data-page="preferences">
@@ -72,6 +74,21 @@
     <span class="label">Using it for budget changes</span>
     <p>If prices change and she still can afford her old bundle, her new choice must be revealed-preferred to it, or be the old bundle itself. This lets you narrow down where the new optimum can be without knowing her utility function (see the questions below).</p>
   </div>
+
+  <h2>Choice functions</h2>
+  <p>A <b>choice function</b> \(C(A)\) says which option a consumer picks from a set \(A\) of available options. For a rational consumer (complete and transitive preferences) the choice from a big set is her favorite available option, so you can predict it from smaller observed choices.</p>
+  <div class="exercise">
+    <h4>Worked example</h4>
+    <p>A rational consumer chooses \(C(a,b)=b\), \(C(b,c)=c\) and \(C(b,d)=b\). What is \(C(a,b,c,d)\)?</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>Read each choice as a preference: \(b\succ a\), \(c\succ b\), \(b\succ d\). By transitivity \(c\succ b\succ a\) and \(c\succ b\succ d\), so \(c\) beats everything: \(C(a,b,c,d)=c\).</p>
+    </details>
+  </div>
+  <div class="num-set" data-gens="choice,choice" data-label="Preferences & choice"></div>
+
+  <h2>What could she choose after prices change?</h2>
+  <p>Suppose a consumer chose \(A\) at old prices, and prices change (same preferences, same income). Her new choice is not completely free: if \(A\) is <em>still affordable</em>, she must pick something at least as good as \(A\). Any bundle that she could have afforded before <em>with money left over</em> was strictly worse than \(A\) (more is better), so she can't pick it now. If \(A\) is <em>no longer affordable</em>, there is no contradiction possible, and any bundle on the new budget line could be her choice.</p>
+  <div class="num-set" data-gens="gpick,gpick" data-label="Revealed preference"></div>
 
   <h2>Check yourself</h2>
   <div class="quiz-set" data-topic="preferences"></div>

@@ -34,6 +34,9 @@
       `<a href="${t.href}"${page === t.id ? ' aria-current="page"' : ''}><span>${t.title}</span>` +
       `${t.status === 'new' ? '<em class="tag new">NEW</em>' : ''}<small>Week ${t.week}</small></a>`;
     const col = ex => `<div class="dd-col"><h4>Midterm ${ex}</h4>${live.filter(t => (t.exam || 1) === ex).map(item).join('')}</div>`;
+    const refs = window.REFERENCE || [];
+    const refCol = refs.length
+      ? `<div class="dd-col"><h4>Reference</h4>${refs.map(t => `<a href="${t.href}"${page === t.id ? ' aria-current="page"' : ''}><span>${t.title}</span></a>`).join('')}</div>` : '';
     const header = document.createElement('header');
     header.className = 'site-header';
     header.innerHTML =
@@ -41,8 +44,8 @@
         <a class="brand" href="index.html">Econ 301<span> · Study Hub</span></a>
         <nav class="nav" aria-label="Main">
           <div class="dd">
-            <button class="dd-btn${live.some(t => t.id === page) ? ' on' : ''}" aria-haspopup="true" aria-expanded="false">Topics <i>▾</i></button>
-            <div class="dd-panel"><div class="dd-inner">${col(1)}${col(2)}</div></div>
+            <button class="dd-btn${live.concat(refs).some(t => t.id === page) ? ' on' : ''}" aria-haspopup="true" aria-expanded="false">Topics <i>▾</i></button>
+            <div class="dd-panel"><div class="dd-inner three">${col(1)}${col(2)}${refCol}</div></div>
           </div>
           ${link('practice.html', 'practice', 'Exercises')}
           ${link('about.html', 'about', 'About')}
@@ -53,7 +56,17 @@
 
     // Topics menu: opens on hover (CSS), and on tap/click/Enter for touch and keyboard users.
     const dd = header.querySelector('.dd'), ddBtn = dd.querySelector('.dd-btn');
-    const setOpen = o => { dd.classList.toggle('open', o); ddBtn.setAttribute('aria-expanded', String(o)); };
+    const panel = dd.querySelector('.dd-panel');
+    // keep the menu inside the window: if it would run past the right edge, slide it left
+    const fit = () => {
+      panel.style.left = '';
+      if (window.innerWidth <= 640) return;
+      const over = panel.getBoundingClientRect().right - (document.documentElement.clientWidth - 12);
+      if (over > 0) panel.style.left = (-over) + 'px';
+    };
+    dd.addEventListener('mouseenter', () => requestAnimationFrame(fit));
+    window.addEventListener('resize', fit);
+    const setOpen = o => { dd.classList.toggle('open', o); ddBtn.setAttribute('aria-expanded', String(o)); if (o) requestAnimationFrame(fit); };
     ddBtn.addEventListener('click', e => { e.stopPropagation(); setOpen(!dd.classList.contains('open')); });
     document.addEventListener('click', e => { if (!dd.contains(e.target)) setOpen(false); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });

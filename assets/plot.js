@@ -46,16 +46,21 @@
       this.clipRect.setAttribute('x', l - 1); this.clipRect.setAttribute('y', t - 4);
       this.clipRect.setAttribute('width', this.iw + 8); this.clipRect.setAttribute('height', this.ih + 5);
       this.axes.innerHTML = '';
-      const xs = niceStep(xmax), ys = niceStep(ymax);
-      for (let v = 0; v <= xmax + 1e-9; v += xs) {
-        el('line', { x1: this.x(v), x2: this.x(v), y1: this.y(0), y2: this.y(ymax), class: 'grid-l' }, this.axes);
-        const tx = el('text', { x: this.x(v), y: this.y(0) + 16, 'text-anchor': 'middle', class: 'tick-t' }, this.axes);
-        tx.textContent = +v.toFixed(6);
-      }
-      for (let v = 0; v <= ymax + 1e-9; v += ys) {
-        el('line', { x1: this.x(0), x2: this.x(xmax), y1: this.y(v), y2: this.y(v), class: 'grid-l' }, this.axes);
-        const ty = el('text', { x: this.x(0) - 8, y: this.y(v) + 4, 'text-anchor': 'end', class: 'tick-t' }, this.axes);
-        ty.textContent = +v.toFixed(6);
+      if (this.o.ticks === false) {
+        const z = el('text', { x: this.x(0) - 10, y: this.y(0) + 16, 'text-anchor': 'middle', class: 'tick-t' }, this.axes);
+        z.textContent = '0';
+      } else {
+        const xs = niceStep(xmax), ys = niceStep(ymax);
+        for (let v = 0; v <= xmax + 1e-9; v += xs) {
+          el('line', { x1: this.x(v), x2: this.x(v), y1: this.y(0), y2: this.y(ymax), class: 'grid-l' }, this.axes);
+          const tx = el('text', { x: this.x(v), y: this.y(0) + 16, 'text-anchor': 'middle', class: 'tick-t' }, this.axes);
+          tx.textContent = +v.toFixed(6);
+        }
+        for (let v = 0; v <= ymax + 1e-9; v += ys) {
+          el('line', { x1: this.x(0), x2: this.x(xmax), y1: this.y(v), y2: this.y(v), class: 'grid-l' }, this.axes);
+          const ty = el('text', { x: this.x(0) - 8, y: this.y(v) + 4, 'text-anchor': 'end', class: 'tick-t' }, this.axes);
+          ty.textContent = +v.toFixed(6);
+        }
       }
       el('line', { x1: this.x(0), x2: this.x(xmax), y1: this.y(0), y2: this.y(0), class: 'axis' }, this.axes);
       el('line', { x1: this.x(0), x2: this.x(0), y1: this.y(0), y2: this.y(ymax), class: 'axis' }, this.axes);

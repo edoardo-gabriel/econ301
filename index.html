@@ -32,6 +32,8 @@
   <div class="grid" id="grid-1"></div>
   <h2>Midterm 2 <span class="tag new">IN PROGRESS</span></h2>
   <div class="grid" id="grid-2"></div>
+  <h2>Reference</h2>
+  <div class="grid" id="grid-ref"></div>
 
   <div class="callout">
     <span class="label">How to use this site</span>
@@ -49,6 +51,12 @@ document.addEventListener('DOMContentLoaded', function () {
     a.innerHTML = '<div>' + tag + '<span class="tag">Week ' + t.week + '</span></div><h3>' + t.title + '</h3><p>' + t.blurb + '</p>' +
       '<div class="progress" data-progress="' + t.id + '"><i></i></div><div class="progress-label"></div>';
     grid.appendChild(a);
+  });
+  (window.REFERENCE || []).forEach(function (t) {
+    var a = document.createElement('a');
+    a.className = 'card'; a.href = t.href;
+    a.innerHTML = '<div><span class="tag">Reference</span></div><h3>' + t.title + '</h3><p>' + t.blurb + '</p>';
+    document.getElementById('grid-ref').appendChild(a);
   });
   var s = window.SITE || {};
   document.getElementById('updated').textContent = 'Last updated ' + (s.updated || '') + '. ' + (s.note || '');
