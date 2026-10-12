@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Elasticities · Econ 301</title>
+<meta name="description" content="Own-price, cross-price and income elasticity of demand, with interactive graphs.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/plot.js"></script>
+<script defer src="assets/econ.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+<script defer src="assets/pages/elasticity.js"></script>
+</head>
+<body data-page="elasticity">
+<main>
+  <div class="eyebrow">Week 4 · Midterm 2</div>
+  <h1>Elasticities</h1>
+  <p class="lede">How strongly does the quantity demanded react when a price or income changes? Elasticities answer in percentages, so they don't depend on the units.</p>
+
+  <h2>Own-price elasticity of demand</h2>
+  <p>The own-price elasticity is the percentage change in quantity demanded per 1% change in the good's own price:</p>
+  \[ \varepsilon=\frac{\%\Delta Q}{\%\Delta P}\;\longrightarrow\;\varepsilon=\frac{dQ}{dP}\cdot\frac{P}{Q}\quad\text{(at a point)}. \]
+  <p>For an ordinary good \(\varepsilon&lt;0\). We classify by its magnitude:</p>
+  <table style="border-collapse:collapse;width:100%;font-size:.95rem">
+    <tr style="text-align:left;color:var(--muted)"><th style="padding:6px">\(|\varepsilon|\)</th><th>Called</th><th>If the price rises, total spending \(PQ\)…</th></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">\(&gt;1\)</td><td>elastic</td><td>falls</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">\(=1\)</td><td>unit elastic</td><td>stays the same</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">\(&lt;1\)</td><td>inelastic</td><td>rises</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="label">Common trap</span>
+    <p>Elasticity is <em>not</em> the slope. A straight-line demand curve has a constant slope but its elasticity changes along it: it is very elastic at high prices (small \(Q\)) and inelastic at low prices (large \(Q\)).</p>
+  </div>
+
+  <div class="widget duo" id="w-linear">
+    <h3 class="widget-title">Linear demand and spending <small>slide the price along \(Q=a-bP\)</small></h3>
+    <div class="ph1"></div>
+    <div class="ph2"></div>
+    <div class="ctl"></div>
+  </div>
+
+  <h2>Cross-price elasticity</h2>
+  <p>How does the demand for \(a\) respond to the price of a <em>different</em> good \(b\)?</p>
+  \[ \varepsilon_{ab}=\frac{\%\Delta Q_a}{\%\Delta p_b}=\frac{\partial Q_a}{\partial p_b}\cdot\frac{p_b}{Q_a}. \]
+  <ul>
+    <li>\(\varepsilon_{ab}&gt;0\): \(a\) and \(b\) are <b>substitutes</b>. A pricier \(b\) sends buyers to \(a\) (coffee and tea).</li>
+    <li>\(\varepsilon_{ab}&lt;0\): \(a\) and \(b\) are <b>complements</b>. A pricier \(b\) reduces demand for \(a\) (coffee and cream).</li>
+    <li>\(\varepsilon_{ab}=0\): unrelated, as with Cobb-Douglas.</li>
+  </ul>
+
+  <h2>Income elasticity</h2>
+  <p>How does demand respond to a change in income \(Y\)?</p>
+  \[ \eta=\frac{\%\Delta Q}{\%\Delta Y}=\frac{\partial Q}{\partial Y}\cdot\frac{Y}{Q}. \]
+  <ul>
+    <li>\(\eta&lt;0\): <b>inferior</b> good. Demand falls as income rises (instant noodles, bus rides).</li>
+    <li>\(\eta&gt;0\): <b>normal</b> good. If \(0&lt;\eta&lt;1\) it is a <b>necessity</b> (its budget share falls as income rises); if \(\eta&gt;1\) it is a <b>luxury</b> (its budget share rises).</li>
+  </ul>
+
+  <div class="widget split" id="w-const">
+    <h3 class="widget-title">Elasticity lab <small>set the three elasticities and see what they imply</small></h3>
+    <div>
+      <div class="plot-host"></div>
+      <div class="legend"><span><i style="background:var(--c1)"></i>demand at current \(p_b\), \(Y\)</span><span><i style="background:var(--muted)"></i>demand at \(p_b=4\), \(Y=40\)</span></div>
+    </div>
+    <div class="ctl"></div>
+  </div>
+
+  <h3>Things to try</h3>
+  <ul>
+    <li>Set \(\varepsilon_{ab}\) positive, then raise \(p_b\). Which way does the demand curve for \(a\) move?</li>
+    <li>Make \(\eta\) negative and raise income. Does \(Q\) rise or fall?</li>
+    <li>Set \(\varepsilon=-1\). Why does the curve look like \(k/P\)?</li>
+  </ul>
+
+  <div class="pop-marker" data-topic="elasticity"></div>
+
+  <h2>Elasticities from preferences</h2>
+  <p>We already know the demand functions from Midterm 1, so we can compute their elasticities:</p>
+  <table style="border-collapse:collapse;width:100%;font-size:.95rem">
+    <tr style="text-align:left;color:var(--muted)"><th style="padding:6px">Utility</th><th>Own-price</th><th>Cross-price (\(p_b\))</th><th>Income</th></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Cobb-Douglas \(a^\alpha b^\beta\)</td><td>\(-1\)</td><td>\(0\)</td><td>\(1\)</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Complements \(\min\{\alpha a,\beta b\}\)</td><td>\(-\dfrac{\beta p_a}{\beta p_a+\alpha p_b}\)</td><td>\(-\dfrac{\alpha p_b}{\beta p_a+\alpha p_b}\) (complements)</td><td>\(1\)</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Quasilinear \(\sqrt a+b\) (interior)</td><td>\(-2\)</td><td>\(+2\) (substitutes)</td><td>\(0\)</td></tr>
+  </table>
+  <p class="hint">Perfect substitutes have a jump in demand where \(p_a=\tfrac{\alpha}{\beta}p_b\), so elasticities are only defined away from that price.</p>
+
+  <div class="widget" id="w-util">
+    <h3 class="widget-title">Elasticity calculator <small>computed numerically from the optimal bundle</small></h3>
+    <div class="ctl"></div>
+    <div class="res readout"></div>
+  </div>
+
+  <h2>Worked exercises</h2>
+  <div class="exercise">
+    <h4>All three elasticities at a point</h4>
+    <p>Demand for \(a\) is \(Q_a=50-4p_a+2p_b+0.5Y\). At \(p_a=5\), \(p_b=10\), \(Y=40\), find the own-price, cross-price and income elasticities and classify the goods.</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>\(Q_a=50-20+20+20=70\).</p>
+      <p>Own: \(\varepsilon=-4\cdot\frac{5}{70}=-\frac27\approx-0.29\): inelastic.<br>
+         Cross: \(\varepsilon_{ab}=2\cdot\frac{10}{70}=\frac27\approx0.29&gt;0\): substitutes.<br>
+         Income: \(\eta=0.5\cdot\frac{40}{70}=\frac27\approx0.29\): normal good and a necessity (\(0&lt;\eta&lt;1\)).</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>Revenue-maximizing price</h4>
+    <p>Demand is \(Q=120-4P\). At what price is total spending largest, and what is the elasticity there?</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>Spending \(R=P(120-4P)=120P-4P^2\). Setting \(R'=120-8P=0\) gives \(P^*=15\), \(Q^*=60\), \(R^*=900\).</p>
+      <p>Elasticity: \(\varepsilon=-4\cdot\frac{15}{60}=-1\). Spending is maximized exactly where demand is unit elastic: below \(P=15\) it is inelastic (raising the price helps), above it is elastic (raising the price hurts).</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>Elasticity from utility</h4>
+    <p>A consumer has \(u(a,b)=\sqrt a+b\). Her interior demand for \(a\) is \(D_a=\left(\dfrac{p_b}{2p_a}\right)^2\). Find the own-price, cross-price and income elasticities of demand for \(a\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>Write \(D_a=\frac{p_b^2}{4}p_a^{-2}\). For a power function \(D=Kx^k\), the elasticity with respect to \(x\) is just the exponent \(k\):</p>
+      <ul>
+        <li>own price: exponent of \(p_a\) is \(-2\), so \(\varepsilon=-2\) (elastic);</li>
+        <li>cross price: exponent of \(p_b\) is \(+2\), so \(\varepsilon_{ab}=+2\) (substitutes);</li>
+        <li>income: \(Y\) doesn't appear, so \(\eta=0\) (all extra income goes to \(b\)).</li>
+      </ul>
+    </details>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="quiz-set" data-topic="elasticity"></div>
+  <div class="num-set" data-gens="elas,incel,crossel" data-label="Elasticities"></div>
+
+  <div id="pagenav"></div>
+</main>
+</body>
+</html>

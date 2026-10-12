@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Demand curves · Econ 301</title>
+<meta name="description" content="Deriving individual demand curves and adding them to get market demand.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/plot.js"></script>
+<script defer src="assets/econ.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+<script defer src="assets/pages/demand.js"></script>
+</head>
+<body data-page="demand">
+<main>
+  <div class="eyebrow">Week 3 · Midterm 1</div>
+  <h1>Demand curves</h1>
+  <p class="lede">What happens to the optimal bundle when a price changes? Trace it out and you have a demand curve.</p>
+
+  <h2>From optimal choice to demand</h2>
+  <p>The <b>demand curve</b> for good \(a\), \(D_a(p_a)\), is the optimal quantity of \(a\) as a function of its own price, holding preferences, income \(Y\) and the other price \(p_b\) fixed. To get it: solve the optimal-choice problem for general \(p_a\).</p>
+
+  <div class="widget duo" id="w-derive">
+    <h3 class="widget-title">Deriving a demand curve <small>move \(p_a\) and watch both graphs</small></h3>
+    <div class="ph1"></div>
+    <div class="ph2"></div>
+    <div class="ctl"></div>
+  </div>
+
+  <h2>Demand for our three utility functions</h2>
+  <table style="border-collapse:collapse;width:100%;font-size:.95rem">
+    <tr style="text-align:left;color:var(--muted)"><th style="padding:6px">Utility</th><th>Demand for \(a\)</th><th>Shape</th></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Cobb-Douglas \(a^\alpha b^\beta\)</td><td>\(\dfrac{\alpha}{\alpha+\beta}\dfrac{Y}{p_a}\)</td><td>Smooth hyperbola. Independent of \(p_b\).</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Complements \(\min\{\alpha a,\beta b\}\)</td><td>\(\dfrac{\beta Y}{\beta p_a+\alpha p_b}\)</td><td>Smooth, falls with \(p_a\), but depends on \(p_b\) too.</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Substitutes \(\alpha a+\beta b\)</td><td>\(Y/p_a\) if \(p_a<\tfrac{\alpha}{\beta}p_b\); \(0\) if above; anything in \([0,Y/p_a]\) at equality</td><td>Jumps, with a flat piece at \(p_a=\tfrac{\alpha}{\beta}p_b\).</td></tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="label">Scope</span>
+    <p>For Midterm 1 you need to <em>derive</em> demand curves and <em>add</em> them. Elasticities, normal/inferior goods, substitutes/complements classification, and income and substitution effects are <b>not</b> on the exam.</p>
+  </div>
+
+  <div class="pop-marker" data-topic="demand"></div>
+
+  <h2>Market demand</h2>
+  <p>Market demand is the sum of everyone's demand <b>at each price</b>: add <em>quantities</em>, not prices. Graphically that is a <em>horizontal</em> sum. If one consumer stops buying above some price, the market curve has a <b>kink</b> there.</p>
+
+  <div class="widget split" id="w-market">
+    <h3 class="widget-title">Market demand builder <small>two consumers, one market</small></h3>
+    <div class="plot-host"></div>
+    <div class="ctl"></div>
+    <div class="legend" style="grid-column:1/-1"><span><i style="background:var(--c1)"></i>consumer 1</span><span><i style="background:var(--c2)"></i>consumer 2</span><span><i style="background:var(--ink)"></i>market demand</span></div>
+  </div>
+
+  <h2>Worked exercise</h2>
+  <div class="exercise">
+    <h4>Market demand with a jump</h4>
+    <p>Consumer 1 has \(u_1=ab^2\) and income \(Y_1=60\). Consumer 2 has \(u_2=2a+b\) and income \(Y_2=30\). Both face \(p_b=3\). Find each consumer's demand for \(a\) and the market demand for all \(p_a>0\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p><b>Consumer 1</b> (Cobb-Douglas): the share spent on \(a\) is \(\frac{1}{1+2}=\frac13\), so \(D_1(p_a)=\dfrac{60/3}{p_a}=\dfrac{20}{p_a}\).</p>
+      <p><b>Consumer 2</b> (perfect substitutes): compare utility per dollar, \(2/p_a\) versus \(1/3\). She buys \(a\) only if \(2/p_a>1/3\), i.e. \(p_a<6\):</p>
+      \[ D_2(p_a)=\begin{cases}30/p_a & p_a<6\ [0,\,5] & p_a=6\ 0 & p_a>6.\end{cases} \]
+      <p><b>Market:</b> add at each price.</p>
+      \[ D(p_a)=\begin{cases}50/p_a & p_a<6\ 20/6+[0,5]=[3.33,\,8.33] & p_a=6\ 20/p_a & p_a>6.\end{cases} \]
+      <p>The market curve drops from \(50/6\approx8.33\) to \(20/6\approx3.33\) at \(p_a=6\) when consumer 2 leaves the market, and there is a flat piece at \(p_a=6\) in between. Try recreating it in the builder: consumer 1 "Cobb-Douglas, a third on a" with income 60 and consumer 2 "Perfect substitutes" with income 30 (set \(p_b=3\) in the builder; the substitutes preset is \(2a+b\)).</p>
+    </details>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="quiz-set" data-topic="demand"></div>
+  <div class="num-set" data-gens="market,market" data-label="Demand curves"></div>
+
+  <div id="pagenav"></div>
+</main>
+</body>
+</html>

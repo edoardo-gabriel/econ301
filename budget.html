@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Budget sets · Econ 301</title>
+<meta name="description" content="Budget sets and budget lines: interactive explorer with prices and income.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/plot.js"></script>
+<script defer src="assets/econ.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+<script defer src="assets/pages/budget.js"></script>
+</head>
+<body data-page="budget">
+<main>
+  <div class="eyebrow">Week 1 · Midterm 1</div>
+  <h1>Budget sets</h1>
+  <p class="lede">What can the consumer afford? Before worrying about what she <em>wants</em>, we pin down what she <em>can</em> buy.</p>
+
+  <h2>The market assumptions</h2>
+  <ul>
+    <li><b>Constant (linear) prices:</b> the price per unit doesn't change with the amount bought. No quantity discounts.</li>
+    <li><b>Infinitely divisible goods:</b> 1.5 units is fine, so the budget line is a smooth line.</li>
+    <li><b>Price takers with income \(Y\):</b> the consumer cannot change prices and spends at most \(Y\).</li>
+  </ul>
+
+  <h2>The budget set</h2>
+  <p>With two goods \(a\) and \(b\), prices \(p_a, p_b>0\) and income \(Y\), the budget set is every nonnegative bundle she can pay for:</p>
+  \[ B=\{(a,b)\in\mathbb R_+^2:\ p_a a+p_b b\le Y\}. \]
+  <p>Its upper edge, \(p_a a+p_b b=Y\), is the <b>budget line</b>. Solving for \(b\) gives \(b=\dfrac{Y}{p_b}-\dfrac{p_a}{p_b}\,a\): vertical intercept \(Y/p_b\), horizontal intercept \(Y/p_a\), slope \(-p_a/p_b\).</p>
+
+  <div class="callout">
+    <span class="label">Interpretation</span>
+    <p>The price ratio \(p_a/p_b\) is the <b>market's relative value</b> of the two goods: to buy one more unit of \(a\) you must give up \(p_a/p_b\) units of \(b\).</p>
+  </div>
+
+  <div class="widget split" id="w-budget">
+    <h3 class="widget-title">Budget explorer <small>drag the sliders, then tap the graph to test a bundle</small></h3>
+    <div>
+      <div class="plot-host"></div>
+      <div class="legend"><span><i style="background:var(--c1)"></i>current budget line</span><span><i style="background:var(--muted)"></i>baseline (pinned)</span></div>
+    </div>
+    <div class="ctl"></div>
+  </div>
+
+  <h3>Things to try</h3>
+  <ol>
+    <li>Raise \(p_a\) only. Which intercept moves? (The pivot happens around the \(b\)-intercept.)</li>
+    <li>Double income. The line shifts out <em>in parallel</em>: the slope \(-p_a/p_b\) doesn't involve \(Y\).</li>
+    <li>Double <em>everything</em>: both prices and income. Where does the line end up?</li>
+  </ol>
+
+  <div class="callout warn">
+    <span class="label">Common trap</span>
+    <p>Only <em>relative</em> prices and real income matter. Multiplying \(p_a\), \(p_b\) and \(Y\) by the same number leaves the budget set, and therefore the optimal bundles, unchanged.</p>
+  </div>
+
+  <div class="pop-marker" data-topic="budget"></div>
+
+  <h2>Worked exercise</h2>
+  <div class="exercise">
+    <h4>Handout 2, Question 2</h4>
+    <p>Suppose \(p_a=\$2\), \(p_b=\$4\) and \(Y=\$20\).</p>
+    <ol>
+      <li>What is the budget set?</li>
+      <li>What happens to the budget set if \(p_a\) increases to $4?</li>
+      <li>What happens if income doubles under the original prices?</li>
+      <li>What happens if income and both prices double from their original values?</li>
+    </ol>
+    <button class="btn small ghost" onclick="BudgetDemo.load(2,4,20,true)">Load the original scenario into the explorer</button>
+    <details class="solution"><summary>Show solution</summary>
+      <ol>
+        <li>\(B=\{(a,b)\ge0:\ 2a+4b\le20\}\). Intercepts: \((10,0)\) and \((0,5)\); slope \(-1/2\).</li>
+        <li>\(4a+4b\le20\). Intercepts \((5,0)\) and \((0,5)\); slope \(-1\). The set <b>shrinks</b>: the \(b\)-intercept is unchanged and the \(a\)-intercept falls from 10 to 5. Anything with a lot of \(a\) became unaffordable.</li>
+        <li>\(2a+4b\le40\). Intercepts \((20,0)\) and \((0,10)\); slope still \(-1/2\). The set <b>expands</b>, with a parallel shift outward.</li>
+        <li>\(4a+8b\le40\), which divides by 2 to \(2a+4b\le20\): the <b>same</b> budget set as originally. Nothing changes.</li>
+      </ol>
+    </details>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="quiz-set" data-topic="budget"></div>
+  <div class="num-set" data-gens="intercept,intercept" data-label="Budget sets"></div>
+
+  <div id="pagenav"></div>
+</main>
+</body>
+</html>

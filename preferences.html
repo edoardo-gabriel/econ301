@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Preferences and choice · Econ 301</title>
+<meta name="description" content="Rational preferences, more-is-better, convexity, and revealed preferences.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/plot.js"></script>
+<script defer src="assets/econ.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+<script defer src="assets/pages/preferences.js"></script>
+</head>
+<body data-page="preferences">
+<main>
+  <div class="eyebrow">Week 1 · Midterm 1</div>
+  <h1>Preferences &amp; choice</h1>
+  <p class="lede">Economics starts with a simple model of the consumer: she can rank bundles of goods, and she picks the best one she can afford.</p>
+
+  <h2>Rational preferences</h2>
+  <p>A <b>bundle</b> is a quantity of each good, e.g. \((a,b)\). We write \(X\succeq Y\) ("\(X\) is at least as good as \(Y\)"), \(X\succ Y\) (strictly better) and \(X\sim Y\) (indifferent). Preferences are <b>rational</b> if they are</p>
+  <ul>
+    <li><b>complete</b>: for any two bundles, \(X\succeq Y\) or \(Y\succeq X\) (or both). Indifference is allowed; "can't compare" is not.</li>
+    <li><b>transitive</b>: if \(X\succeq Y\) and \(Y\succeq Z\), then \(X\succeq Z\).</li>
+  </ul>
+
+  <div class="widget split" id="w-rational">
+    <h3 class="widget-title">Rationality checker <small>build a set of preferences over three bundles</small></h3>
+    <div class="ctl"></div>
+    <div class="readout res"></div>
+  </div>
+  <p class="hint">The default is a cycle: \(X\succ Y\succ Z\succ X\). Nobody can be a utility maximizer with preferences like these, because there is no best bundle. Try making them transitive again.</p>
+
+  <h2>More is better, and convexity</h2>
+  <p><b>More is better</b> (monotonicity): a bundle with more of both goods, or more of one and no less of the other, is strictly better.</p>
+  <p><b>Convexity</b>: the average of two equally good bundles is at least as good as either of them. People like variety rather than extremes. Equivalently, \(|\mathrm{MRS}_{ab}|\) is <em>decreasing</em> in \(a\): the more \(a\) you already have, the less \(b\) you'd give up for another unit of \(a\), so the indifference curve flattens as \(a\) grows.</p>
+
+  <div class="widget split" id="w-convex">
+    <h3 class="widget-title">Convexity test <small>pick two equally good bundles and mix them</small></h3>
+    <div class="plot-host"></div>
+    <div class="ctl"></div>
+  </div>
+
+  <div class="callout warn">
+    <span class="label">Watch out</span>
+    <p>Convexity says the mix is <em>at least as good</em>, not strictly better. Perfect substitutes (\(u=a+b\)) are the borderline case: the mix is exactly as good, and the indifference curve is a straight line.</p>
+  </div>
+
+  <div class="pop-marker" data-topic="preferences"></div>
+
+  <h2>Choice and revealed preference</h2>
+  <p>We can't read minds, but we can observe choices. If a consumer picks \(X\) when \(Y\) was also affordable, she <b>reveals</b> \(X\succeq Y\). If \(Y\) was <em>strictly inside</em> her budget (she could have afforded a bit more of both goods), then with more-is-better she reveals \(X\succ Y\).</p>
+  <p>Her choices are consistent with rational preferences only if these revealed rankings never contradict each other. A contradiction: \(X\succ Y\) from one observation and \(Y\succeq X\) from another.</p>
+
+  <div class="widget split" id="w-revealed">
+    <h3 class="widget-title">Revealed preference detector <small>edit the numbers, it starts with a classic inconsistent example</small></h3>
+    <div class="plot-host"></div>
+    <div>
+      <div class="ctl"></div>
+      <div class="readout res" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">Using it for budget changes</span>
+    <p>If prices change and she still can afford her old bundle, her new choice must be revealed-preferred to it, or be the old bundle itself. This lets you narrow down where the new optimum can be without knowing her utility function (see the questions below).</p>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="quiz-set" data-topic="preferences"></div>
+
+  <div id="pagenav"></div>
+</main>
+</body>
+</html>

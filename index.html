@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Econ 301 Study Hub</title>
+<meta name="description" content="Interactive study guide for ECON 301: graphs you can play with, pop quizzes, and exercises with solutions.">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+</head>
+<body data-page="home">
+<main class="wide">
+  <section class="hero">
+    <div class="eyebrow">ECON 301 · Fall 2026</div>
+    <h1>Intermediate Microeconomics</h1>
+    <p class="lede">Interactive graphs, pop quizzes and worked exercises for the topics we cover in class. Start with Midterm 1 and work through the topics in order, or jump straight into practice.</p>
+    <div class="hero-cta cta" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+      <a class="btn" href="preferences.html">Start with Week 1</a>
+      <a class="btn ghost" href="practice.html">Go to exercises</a>
+    </div>
+  </section>
+
+  <p class="hint" id="updated"></p>
+  <h2>Midterm 1</h2>
+  <div class="grid" id="grid-1"></div>
+  <h2>Midterm 2 <span class="tag new">IN PROGRESS</span></h2>
+  <div class="grid" id="grid-2"></div>
+
+  <div class="callout">
+    <span class="label">How to use this site</span>
+    <p>Read a topic page, play with the graphs until the idea clicks, then answer the questions at the bottom. Pop quizzes appear as you scroll. Solutions are always available, but try first. Progress is saved in your browser.</p>
+  </div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  (window.TOPICS || []).forEach(function (t) {
+    var grid = document.getElementById('grid-' + (t.exam || 1));
+    var a = document.createElement(t.status === 'soon' ? 'div' : 'a');
+    a.className = 'card' + (t.status === 'soon' ? ' soon' : '');
+    if (t.status !== 'soon') a.href = t.href;
+    var tag = t.status === 'new' ? '<span class="tag new">NEW</span> ' : t.status === 'soon' ? '<span class="tag soon">COMING SOON</span> ' : '';
+    a.innerHTML = '<div>' + tag + '<span class="tag">Week ' + t.week + '</span></div><h3>' + t.title + '</h3><p>' + t.blurb + '</p>' +
+      '<div class="progress" data-progress="' + t.id + '"><i></i></div><div class="progress-label"></div>';
+    grid.appendChild(a);
+  });
+  var s = window.SITE || {};
+  document.getElementById('updated').textContent = 'Last updated ' + (s.updated || '') + '. ' + (s.note || '');
+  Quiz.paintBars();
+});
+</script>
+</body>
+</html>

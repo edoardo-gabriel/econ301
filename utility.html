@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Utility and indifference curves · Econ 301</title>
+<meta name="description" content="Utility functions, indifference curves, MRS, marginal utility and ordinal transformations.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/plot.js"></script>
+<script defer src="assets/econ.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+<script defer src="assets/pages/utility.js"></script>
+</head>
+<body data-page="utility">
+<main>
+  <div class="eyebrow">Week 2 · Midterm 1</div>
+  <h1>Utility &amp; indifference curves</h1>
+  <p class="lede">A utility function is a convenient way of writing down preferences: bigger number, better bundle.</p>
+
+  <h2>Utility functions represent preferences</h2>
+  <p>\(u(a,b)\) represents preferences if \(u(X)\ge u(Y)\) exactly when \(X\succeq Y\). We will use three families, for \(\alpha,\beta>0\):</p>
+  <ul>
+    <li><b>Perfect substitutes:</b> \(u=\alpha a+\beta b\). Straight indifference curves.</li>
+    <li><b>Perfect complements:</b> \(u=\min\{\alpha a,\beta b\}\). L-shaped curves, kink where \(\alpha a=\beta b\).</li>
+    <li><b>Cobb-Douglas:</b> \(u=a^\alpha b^\beta\). Smooth, convex curves.</li>
+  </ul>
+
+  <h2>Indifference curves and the MRS</h2>
+  <p>An <b>indifference curve</b> fixes a level of utility: all \((a,b)\) with \(u(a,b)=\bar u\). Its slope is the <b>marginal rate of substitution</b>,</p>
+  \[ \mathrm{MRS}_{ab}=-\frac{MU_a}{MU_b}, \qquad MU_a=\frac{\partial u}{\partial a},\ MU_b=\frac{\partial u}{\partial b}. \]
+  <p>\(|\mathrm{MRS}_{ab}|\) is the individual's <b>relative value</b> of the goods: how many units of \(b\) she would give up for one more unit of \(a\). Compare this with the <em>market's</em> relative value, \(p_a/p_b\). That comparison is what drives optimal choice on the next page.</p>
+
+  <div class="widget split" id="w-ic">
+    <h3 class="widget-title">Indifference curve explorer <small>tap the graph to move the bundle</small></h3>
+    <div class="plot-host"></div>
+    <div class="ctl"></div>
+  </div>
+
+  <h3>Things to try</h3>
+  <ul>
+    <li>Cobb-Douglas: move right along one curve. Does \(|\mathrm{MRS}|\) rise or fall? (Falls: convexity.)</li>
+    <li>Increase \(\alpha\). What happens to the curve's steepness? Why does a higher \(\alpha\) mean you value \(a\) more?</li>
+    <li>Perfect substitutes: is the MRS the same everywhere? Perfect complements: what is it at the kink?</li>
+  </ul>
+
+  <div class="pop-marker" data-topic="utility"></div>
+
+  <h2>Utility is ordinal</h2>
+  <p>Only the <em>ranking</em> matters, not the size of the numbers. If \(f\) is a <b>positive monotonic (strictly increasing)</b> transformation, \(f(u)\) represents the same preferences as \(u\): same indifference curves, same MRS, same optimal choices. Marginal utilities do change (they get scaled by \(f'\)), but their <em>ratio</em> does not.</p>
+
+  <div class="widget split" id="w-ordinal">
+    <h3 class="widget-title">Same preferences or not? <small>transform \(u=ab\) and compare rankings</small></h3>
+    <div class="ctl"></div>
+    <div class="res"></div>
+  </div>
+
+  <div class="callout warn">
+    <span class="label">Common trap</span>
+    <p>A utility difference of 3 does <em>not</em> mean "worth $3 more" or "three times as happy". Utility numbers have no units.</p>
+  </div>
+
+  <h2>Worked exercises</h2>
+  <div class="exercise">
+    <h4>Handout 2, Question 1</h4>
+    <p>Consumer A's utility function is \(u(a,b)=\sqrt a+\sqrt b\). Graph the indifference curves corresponding to \(u(a,b)=1\) and \(u(a,b)=2\).</p>
+    <details class="solution" id="sol-q1"><summary>Show solution</summary>
+      <p>Fix \(u=\bar u\): \(\sqrt a+\sqrt b=\bar u\Rightarrow b=(\bar u-\sqrt a)^2\), valid for \(0\le a\le\bar u^2\).</p>
+      <ul>
+        <li>\(\bar u=1\): \(b=(1-\sqrt a)^2\) from \((0,1)\) to \((1,0)\).</li>
+        <li>\(\bar u=2\): \(b=(2-\sqrt a)^2\) from \((0,4)\) to \((4,0)\).</li>
+      </ul>
+      <p>Both curves are downward sloping (more is better) and bowed toward the origin (convex), and the higher curve is farther from the origin. Check a point: \((1,1)\) gives \(1+1=2\), so it is on the \(u=2\) curve.</p>
+      <div id="plot-q1" style="max-width:420px"></div>
+    </details>
+  </div>
+
+  <div class="exercise">
+    <h4>Computing marginal utility and MRS</h4>
+    <p>For \(u(a,b)=3a^2b+ab^2\), find \(MU_a\), \(MU_b\) and \(\mathrm{MRS}_{ab}\) at \((a,b)=(2,3)\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>\(MU_a=\partial u/\partial a=6ab+b^2=36+9=45\).<br>\(MU_b=\partial u/\partial b=3a^2+2ab=12+12=24\).<br>\(\mathrm{MRS}_{ab}=-45/24=-15/8\). At this bundle she would give up \(15/8\) units of \(b\) for one more unit of \(a\).</p>
+    </details>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="quiz-set" data-topic="utility"></div>
+  <div class="num-set" data-gens="mrs,mrs" data-label="Utility & indifference curves"></div>
+
+  <div id="pagenav"></div>
+</main>
+</body>
+</html>

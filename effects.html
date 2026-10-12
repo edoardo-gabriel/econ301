@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Substitution and income effects · Econ 301</title>
+<meta name="description" content="Decompose a price change into a substitution effect and an income effect, step by step.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/plot.js"></script>
+<script defer src="assets/econ.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+<script defer src="assets/pages/effects.js"></script>
+</head>
+<body data-page="effects">
+<main>
+  <div class="eyebrow">Week 5 · Midterm 2</div>
+  <h1>Substitution &amp; income effects</h1>
+  <p class="lede">When the price of a good changes, the consumer reacts for two different reasons. Separating them explains why demand curves slope down, and when they might not.</p>
+
+  <h2>Two reasons to change your purchases</h2>
+  <p>Suppose the price of \(a\) falls. Two things happen at once:</p>
+  <ul>
+    <li><b>Substitution effect (SE):</b> \(a\) is now <em>relatively cheaper</em> than \(b\), so she shifts toward \(a\). We isolate this by holding her <em>real income</em> fixed.</li>
+    <li><b>Income effect (IE):</b> the lower price means she can afford more overall: her real income rose. She changes purchases of both goods accordingly, depending on whether \(a\) is normal or inferior.</li>
+  </ul>
+  \[ \underbrace{a_C-a_A}_{\text{total effect}}=\underbrace{a_B-a_A}_{\text{substitution effect}}+\underbrace{a_C-a_B}_{\text{income effect}}. \]
+  <p>Here \(A\) is the original optimum, \(C\) is the final optimum, and \(B\) is an <b>imaginary intermediate bundle</b> that has the new relative prices but the old real income.</p>
+
+  <h2>Finding the intermediate bundle</h2>
+  <p>To separate the two effects we ask: <em>what would she buy at the new relative prices if her utility stayed exactly where it was?</em> That bundle is \(B\).</p>
+  <ol>
+    <li>Find the original optimum \(A\) and its utility \(u_0\).</li>
+    <li>Find \(B\) on the <b>original indifference curve</b> \(u=u_0\), at the point where its slope equals the <b>new price ratio</b>: \(|\mathrm{MRS}_{ab}|=p_a^{new}/p_b\). Equivalently, \(B\) is the cheapest bundle at the new prices that still gives \(u_0\). The line through \(B\) with the new slope is the <b>compensated budget line</b>: parallel to the new budget line and just touching the original indifference curve.</li>
+    <li>Find the final optimum \(C\) at the new prices and her actual income.</li>
+  </ol>
+  <p>Then <b>SE</b> is the move \(A\to B\) and <b>IE</b> is the move \(B\to C\).</p>
+
+  <h2>The signs</h2>
+  <table style="border-collapse:collapse;width:100%;font-size:.95rem">
+    <tr style="text-align:left;color:var(--muted)"><th style="padding:6px">Price of \(a\) falls…</th><th>Substitution effect</th><th>Income effect</th><th>Total</th></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">\(a\) normal</td><td>\(+\)</td><td>\(+\)</td><td>\(+\) (reinforce)</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">\(a\) inferior</td><td>\(+\)</td><td>\(-\)</td><td>usually \(+\) (SE bigger)</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">\(a\) Giffen</td><td>\(+\)</td><td>\(-\), bigger than SE</td><td>\(-\) (demand slopes up!)</td></tr>
+  </table>
+  <p>The SE always goes <em>against</em> the price change: price falls \(\Rightarrow\) buy more of \(a\) (price rises \(\Rightarrow\) buy less). The IE's sign matches the <b>income elasticity</b>: for a price fall, a normal good (\(\eta&gt;0\)) rises and an inferior good (\(\eta&lt;0\)) falls. Everything flips for a price rise.</p>
+
+  <div class="widget split" id="w-eff">
+    <h3 class="widget-title">Decomposition lab <small>change \(p_a\) and watch A → B → C</small></h3>
+    <div>
+      <div class="plot-host"></div>
+      <div class="legend"><span><i style="background:var(--muted)"></i>old budget</span><span><i style="background:var(--ink)"></i>new budget</span><span><i style="background:var(--c2)"></i>compensated budget</span><span><i style="background:var(--c1)"></i>original indifference curve</span><span><i style="background:var(--c3)"></i>final indifference curve</span></div>
+    </div>
+    <div class="ctl"></div>
+  </div>
+
+  <h3>Things to try</h3>
+  <ul>
+    <li><b>Cobb-Douglas:</b> both effects are positive for a price fall. Which effect is larger when the price drops a lot?</li>
+    <li><b>Perfect complements:</b> where is \(B\)? The substitution effect is exactly zero.</li>
+    <li><b>Perfect substitutes</b> (try \(\alpha=\beta=1\) with prices crossing \(p_a=p_b\)): she jumps from one corner to the other.</li>
+    <li><b>Quasilinear:</b> good \(a\) has no income effect. All of the change is substitution.</li>
+    <li>Make the new price <em>higher</em> than the old. Check that the SE reduces consumption of \(a\).</li>
+  </ul>
+
+  <div class="pop-marker" data-topic="effects"></div>
+
+  <h2>Worked exercises</h2>
+  <div class="exercise">
+    <h4>Cobb-Douglas</h4>
+    <p>A consumer has \(u(a,b)=ab\), income \(Y=48\) and \(p_b=2\). The price of \(a\) falls from \(4\) to \(1\). Find the substitution and income effects on \(a\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p><b>Start and end.</b> Cobb-Douglas with equal exponents spends half of income on each good. At \(p_a=4\): \(a_A=\frac{48}{2\cdot4}=6\), \(b_A=\frac{48}{2\cdot2}=12\), so \(u_0=72\). At \(p_a=1\): \(a_C=\frac{48}{2\cdot1}=24\). Total effect \(=24-6=18\).</p>
+      <p><b>Intermediate bundle.</b> Stay on \(u=72\) and find the tangency at the new price ratio: \(|MRS|=\frac ba=\frac{p_a}{p_b}=\frac12\Rightarrow b=\frac a2\). Then \(a\cdot\frac a2=72\Rightarrow a_B=12\).</p>
+      <p><b>Effects.</b> SE \(=a_B-a_A=12-6=6\). IE \(=a_C-a_B=24-12=12\). Both are positive (normal good), and SE + IE \(=18\).</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>Perfect complements</h4>
+    <p>A consumer has \(u(a,b)=\min\{a,b\}\), \(Y=24\) and \(p_b=2\). The price of \(a\) falls from 6 to 2. Find the SE and IE on \(a\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>She always buys \(a=b\). Budget: \((p_a+p_b)a=24\). At \(p_a=6\): \(a_A=\frac{24}{8}=3\). At \(p_a=2\): \(a_C=\frac{24}{4}=6\). Total \(=+3\).</p>
+      <p>Hold real income fixed: the compensated bundle is still the kink bundle \((3,3)\) (the same utility; also still the unique cheapest way to reach it), so \(a_B=3\). SE \(=0\), IE \(=+3\). The L-shaped curves leave no room to substitute.</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>Reading the effects</h4>
+    <p>When the price of \(a\) rises from \(\$2\) to \(\$3\), her consumption of \(a\) rises from 10 to 11. The substitution effect is \(-2\). What is the income effect, and what kind of good is \(a\)?</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>Total \(=+1=SE+IE=-2+IE\), so \(IE=+3\). A price <em>rise</em> lowers real income, and she responds by buying <em>more</em> \(a\): \(a\) is an <b>inferior</b> good. The income effect (+3) outweighs the substitution effect (\(-2\)), so quantity rises with price: a <b>Giffen good</b>.</p>
+    </details>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="quiz-set" data-topic="effects"></div>
+  <div class="num-set" data-gens="sub,sub" data-label="Substitution & income effects"></div>
+
+  <div id="pagenav"></div>
+</main>
+</body>
+</html>

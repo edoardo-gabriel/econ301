@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>About · Econ 301</title>
+<meta name="description" content="What this ECON 301 study site is, how to use it, and what it covers.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/quiz.js"></script>
+</head>
+<body data-page="about">
+<main>
+  <div class="eyebrow">ECON 301 · Fall 2026</div>
+  <h1>About this site</h1>
+  <p class="lede">A free, unofficial study companion for ECON 301. It turns the ideas from lecture and the handouts into graphs you can move, questions you can answer, and exercises with full solutions.</p>
+
+  <h2>How to use it</h2>
+  <ul>
+    <li><b>Topics</b> (top bar): one page per topic, in the order we cover them. Read the short explanation, then play with the interactive graphs until the idea clicks.</li>
+    <li><b>Pop quizzes</b> appear as you scroll, and the <em>Quiz me</em> button gives you a question on the page you are reading.</li>
+    <li><b>Worked exercises</b> on each page have a <em>Show solution</em> button. Try the problem on paper first.</li>
+    <li><b>Exercises</b> (top bar): every question in one place, a 10-question mock quiz, and numeric drills that generate new numbers every time.</li>
+    <li><b>Dark mode:</b> use the ◐ button at the right of the top bar.</li>
+  </ul>
+
+  <h2>What it covers</h2>
+  <p>New topics are added as the course moves along. Right now:</p>
+  <div id="covered"></div>
+
+  <h2>Your progress and privacy</h2>
+  <p>There are no accounts and nothing is sent anywhere. Which questions you have answered correctly is saved only in <em>your own browser</em> on this device, so your instructors cannot see it, and clearing your browser data (or the reset button on the Exercises page) erases it.</p>
+
+  <div class="callout warn">
+    <span class="label">A note on accuracy</span>
+    <p>This site is a study aid, not course material. If anything here disagrees with lecture or the handouts, <b>lecture and the handouts are right</b>. If you spot a mistake, please tell your TA.</p>
+  </div>
+
+  <h2>Who made it</h2>
+  <p>Built for ECON 301 (Fall 2026, instructor Fran Flanagan) and maintained by your TA, Edoardo Gabriel. Math is typeset with <a href="https://katex.org">KaTeX</a>; everything else is plain HTML, CSS and JavaScript.</p>
+
+  <div class="hero-cta" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
+    <a class="btn" href="index.html">Go to the topics</a>
+    <a class="btn ghost" href="practice.html">Go to exercises</a>
+  </div>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var host = document.getElementById('covered');
+  [1, 2].forEach(function (ex) {
+    var list = (window.TOPICS || []).filter(function (t) { return (t.exam || 1) === ex && t.status !== 'soon'; });
+    if (!list.length) return;
+    var h = document.createElement('h3'); h.textContent = 'Midterm ' + ex; host.appendChild(h);
+    var ul = document.createElement('ul');
+    list.forEach(function (t) {
+      var li = document.createElement('li');
+      li.innerHTML = '<a href="' + t.href + '">' + t.title + '</a>: ' + t.blurb;
+      ul.appendChild(li);
+    });
+    host.appendChild(ul);
+  });
+});
+</script>
+</body>
+</html>
