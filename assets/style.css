@@ -1,45 +1,45 @@
 /* ECON 301 study site — single stylesheet, no framework. */
 :root {
-  /* palette: 092328 ink green, 12544F deep teal, 2A835F emerald, 8BBB92 sage, plus clean white */
-  --bg: #f7fbf8;
-  --surface: #ffffff;
-  --ink: #092328;
-  --muted: #4d6a66;
-  --line: #d5e4da;
-  --accent: #12544f;
-  --accent-soft: #e2f0e6;
+  /* palette: 02020B black, D36135 spicy paprika, 7FB069 sage green, ECE4B7 vanilla custard, E6AA68 light caramel */
+  --bg: #faf7e8;
+  --surface: #fffdf5;
+  --ink: #02020b;
+  --muted: #5c5a48;
+  --line: #e4dcb0;
+  --accent: #b84d20;
+  --accent-soft: #f3e9c2;
   --on-accent: #ffffff;
-  --c1: #2a835f;
-  --c2: #d9772b;
-  --c3: #1c6e8c;
-  --good: #2a835f;
-  --good-soft: #dcefe2;
-  --bad: #c0472f;
-  --bad-soft: #fae1da;
-  --warn-soft: #f7efcf;
-  --shadow: 0 1px 2px rgba(9, 35, 40, .06), 0 6px 20px rgba(9, 35, 40, .06);
+  --c1: #5f9348;
+  --c2: #d36135;
+  --c3: #c98530;
+  --good: #4a8a38;
+  --good-soft: #e1edd3;
+  --bad: #b3261e;
+  --bad-soft: #f9ddd0;
+  --warn-soft: #f6e7b0;
+  --shadow: 0 1px 2px rgba(2, 2, 11, .06), 0 6px 20px rgba(2, 2, 11, .06);
   --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --radius: 14px;
 }
 :root[data-theme="dark"] {
-  --bg: #092328;
-  --surface: #0e2d32;
-  --ink: #f2f8f4;
-  --muted: #9dbfb3;
-  --line: #1f4a4a;
-  --accent: #8bbb92;
-  --accent-soft: #123b3a;
-  --on-accent: #092328;
-  --c1: #8bbb92;
-  --c2: #f2a65a;
-  --c3: #6fc2d6;
-  --good: #7fd1a0;
-  --good-soft: #12403a;
-  --bad: #f08a72;
-  --bad-soft: #4a2a27;
-  --warn-soft: #3f3a1e;
-  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 6px 20px rgba(0, 0, 0, .3);
+  --bg: #05050f;
+  --surface: #101019;
+  --ink: #f4eecb;
+  --muted: #b3ad8c;
+  --line: #2a2a36;
+  --accent: #e6aa68;
+  --accent-soft: #231c14;
+  --on-accent: #02020b;
+  --c1: #7fb069;
+  --c2: #e8744a;
+  --c3: #e6aa68;
+  --good: #8fc47a;
+  --good-soft: #172619;
+  --bad: #f08a6a;
+  --bad-soft: #3a1f18;
+  --warn-soft: #3a321a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .5), 0 6px 20px rgba(0, 0, 0, .4);
 }
 
 * { box-sizing: border-box; }
