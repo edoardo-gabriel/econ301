@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
       out.set(
         `<p>\\(MC(q)=2q+${n2(k)}\\) and \\(MR=p=${n2(p)}\\).</p>` +
         (p > k
-          ? `<p>Set \\(p=MC\\): \\(q^*=\\frac{p-k}{2}=<b>${n2(q)}</b>\\). Profit \\(\\pi=pq-c(q)=<b>${n2(profit)}</b>\\).</p>`
-          : `<p>\\(p\\le MC(0)=${n2(k)}\\): every unit costs more than it earns, so \\(q^*=<b>0</b>\\) and \\(\\pi=0\\) (a corner solution).</p>`) +
+          ? `<p>Set \\(p=MC\\): \\(q^*=\\frac{p-k}{2}=\\mathbf{${n2(q)}}\\). Profit \\(\\pi=pq-c(q)=\\mathbf{${n2(profit)}}\\).</p>`
+          : `<p>\\(p\\le MC(0)=${n2(k)}\\): every unit costs more than it earns, so \\(q^*=\\mathbf{0}\\) and \\(\\pi=0\\) (a corner solution).</p>`) +
         `<p class="hint">Shaded area: the gap between the price and \\(MC\\), summed over all units produced. With no fixed cost it equals profit.</p>`);
     }
     draw();
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `<p>The point \\((K,L)=(${n2(K)},${n2(L)})\\) produces \\(q=${n2(q)}\\).</p>` +
         (type === 'pc'
           ? `<p>The corner is where \\(\\alpha K=\\beta L\\). \\(MP_K\\), \\(MP_L\\) and the MRTS are <b>undefined</b> there (the isoquant has a kink).</p>`
-          : `<p>\\(MP_K=${n2(mpk)}\\), \\(MP_L=${n2(mpl)}\\), so \\(MRTS_{KL}=-\\frac{MP_K}{MP_L}=<b>${n2(mrts)}</b>\\).</p>`) +
+          : `<p>\\(MP_K=${n2(mpk)}\\), \\(MP_L=${n2(mpl)}\\), so \\(MRTS_{KL}=-\\frac{MP_K}{MP_L}=\\mathbf{${n2(mrts)}}\\).</p>`) +
         `<p>Doubling both inputs multiplies output by <b>${n2(ratio)}</b>: <b>${rsTxt}</b>${type === 'cd' ? ` (\\(\\alpha+\\beta=${n2(a + b)}\\))` : ''}.</p>` +
         `<p class="hint">Dashed grey: the isoquant for output \\(2q\\), farther from the origin.</p>`);
     }
