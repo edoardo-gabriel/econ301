@@ -53,7 +53,17 @@
     { g: 'Demand and elasticity', tex: R`\varepsilon=\dfrac{dQ}{dP}\cdot\dfrac PQ`, en: 'own-price elasticity of demand: % change in quantity per 1% change in its own price', ex: R`\(|\varepsilon|>1\): elastic` },
     { g: 'Demand and elasticity', tex: R`\varepsilon_{ab}`, en: 'cross-price elasticity: response of the demand for a to the price of b', ex: R`positive: substitutes; negative: complements` },
     { g: 'Demand and elasticity', tex: R`\eta`, en: 'income elasticity of demand: % change in quantity per 1% change in income', ex: R`negative: inferior; above 1: luxury` },
-    { g: 'Demand and elasticity', tex: R`SE,\ IE`, en: 'the substitution effect and the income effect of a price change', ex: R`total effect \(=SE+IE\)` }
+    { g: 'Demand and elasticity', tex: R`SE,\ IE`, en: 'the substitution effect and the income effect of a price change', ex: R`total effect \(=SE+IE\)` },
+
+    // ---------------- production and profit ----------------
+    { g: 'Production and profit', tex: R`q`, en: 'the firm\'s output', ex: R`\(q\ge0\)` },
+    { g: 'Production and profit', tex: R`\pi(q)=R(q)-C(q)`, en: 'profit: revenue minus cost', ex: R`a price taker has \(R(q)=pq\)` },
+    { g: 'Production and profit', tex: R`MR=\dfrac{dR}{dq},\ \ MC=\dfrac{dC}{dq}`, en: 'marginal revenue and marginal cost: the extra revenue and cost of one more unit', ex: R`at an interior optimum, \(MR=MC\)` },
+    { g: 'Production and profit', tex: R`p=MC(q^*)`, en: 'the profit-maximizing condition for a price taker (needs q* > 0)', ex: R`if \(p&lt;MC(0)\), then \(q^*=0\)` },
+    { g: 'Production and profit', tex: R`F(K,L)`, en: 'the production function: output from capital K and labor L', ex: R`\(F(K,L)=K^{1/3}L^{1/2}\)` },
+    { g: 'Production and profit', tex: R`MP_K,\ MP_L`, en: 'marginal products: the extra output from one more unit of capital or labor', ex: R`\(MP_L=\partial F/\partial L\)` },
+    { g: 'Production and profit', tex: R`MRTS_{KL}=-\dfrac{MP_K}{MP_L}`, en: 'marginal rate of technical substitution: the slope of the isoquant', ex: R`labor the firm can give up for one more unit of capital` },
+    { g: 'Production and profit', tex: R`F(xK,xL)\ \gtreqless\ xF(K,L)`, en: 'returns to scale: > is increasing, = is constant, < is decreasing', ex: R`Cobb-Douglas: compare \(\alpha+\beta\) with 1` }
   ];
 
   // "Read the statement": formal statement -> what is it called?

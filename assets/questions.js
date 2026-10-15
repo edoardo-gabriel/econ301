@@ -628,6 +628,60 @@
       q: R`Consumer F has utility \(u(a,b)=3a+2b\). Prices are \(p_a=2\), \(p_b=1\) and income is \(Y=20\). With \(a\) on the horizontal axis, find the slope of the budget constraint, the optimal choice \((a^*,b^*)\), and \(\mathrm{MRS}_{ab}\) at the optimum. (Enter signed numbers.)`,
       parts: [{ label: 'Budget slope', answer: -2 }, { label: R`\(a^*\)`, answer: 0 }, { label: R`\(b^*\)`, answer: 20 }, { label: R`\(\mathrm{MRS}_{ab}\)`, answer: -1.5 }],
       sol: R`<b>Slope:</b> \(-p_a/p_b=-2\). <b>Optimum:</b> utility per dollar is \(3/2=1.5\) for \(a\) and \(2/1=2\) for \(b\), so she spends everything on \(b\): \((0,20)\). <b>MRS:</b> constant, \(-3/2\). At this corner \(|\mathrm{MRS}|=1.5&lt;p_a/p_b=2\), so she values \(a\) less than the market does and buys none.`
+    },
+
+    // ============================ PRODUCTION & PROFIT ============================
+    {
+      id: 'pr01', topic: 'production', type: 'num',
+      q: R`Firm A is a price taker with cost function \(c(q)=q^2+4q\). The market price is \(p=10\). Find the profit-maximizing quantity and the resulting profit.`,
+      parts: [{ label: R`\(q^*\)`, answer: 3 }, { label: R`profit \(\pi\)`, answer: 9 }],
+      sol: R`\(MC=2q+4\) and \(MR=p=10\). Setting \(p=MC\): \(q^*=3\). Profit \(=10(3)-(9+12)=9\).`
+    },
+    {
+      id: 'pr02', topic: 'production', type: 'mc',
+      q: R`Firm A has \(c(q)=q^2+4q\) and is a price taker. If the market price falls to \(p=3\), what is its profit-maximizing quantity?`,
+      choices: [R`\(q^*=0\)`, R`\(q^*=-\tfrac12\)`, R`\(q^*=3\)`, R`\(q^*=\tfrac12\)`], answer: 0,
+      expl: R`\(p=MC\) gives \(3=2q+4\), so \(q=-\tfrac12\), which is infeasible. Since \(MC(0)=4&gt;p\), profit \(-q-q^2\) falls as \(q\) rises. The firm sits at the corner \(q^*=0\) and earns zero profit.`
+    },
+    {
+      id: 'pr03', topic: 'production', type: 'tf',
+      q: R`<strong>True or false?</strong>`,
+      items: [
+        { t: R`A price taker's marginal revenue equals the market price.`, a: true },
+        { t: R`A profit-maximizing firm always produces where \(p=MC\).`, a: false },
+        { t: R`A production function is ordinal: only the ranking of output levels matters.`, a: false },
+        { t: R`An isoquant collects all input combinations that produce the same output.`, a: true }
+      ],
+      expl: R`For a price taker \(R=pq\), so \(MR=p\). The condition \(p=MC\) holds only at an interior optimum \(q^*&gt;0\); at a corner the firm produces nothing. Production functions are <em>cardinal</em> (the output level matters), unlike utility.`
+    },
+    {
+      id: 'pr04', topic: 'production', type: 'num', tol: 0.01,
+      q: R`Firm B has \(F(K,L)=K^{1/3}L^{1/2}\). Find \(MRTS_{KL}\) at \((K,L)=(4,6)\). (Enter a signed number.)`,
+      answer: -1,
+      sol: R`\(MP_K=\tfrac13K^{-2/3}L^{1/2}\) and \(MP_L=\tfrac12K^{1/3}L^{-1/2}\), so \(MRTS_{KL}=-\frac23\cdot\frac LK=-\frac23\cdot\frac64=-1\).`
+    },
+    {
+      id: 'pr05', topic: 'production', type: 'tf', three: true,
+      q: R`For each production function, what are the returns to scale? Answer TRUE, FALSE or UNCERTAIN to the statement given.`,
+      items: [
+        { t: R`\(F(K,L)=K^{3/4}L^{1/2}\) has increasing returns to scale.`, a: true },
+        { t: R`\(F(K,L)=\min\{2K,L\}\) has decreasing returns to scale.`, a: false },
+        { t: R`\(F(K,L)=3K+L\) has constant returns to scale.`, a: true },
+        { t: R`\(F(K,L)=K^{1/3}L^{1/2}\) has constant returns to scale.`, a: false }
+      ],
+      expl: R`Scale both inputs by \(x\). Cobb-Douglas gives \(x^{\alpha+\beta}F\): \(\frac34+\frac12=\frac54&gt;1\) is increasing, \(\frac13+\frac12=\frac56&lt;1\) is decreasing. Perfect substitutes and complements are always constant: \(\min\{2xK,xL\}=x\min\{2K,L\}\).`
+    },
+    {
+      id: 'pr06', topic: 'production', type: 'mc',
+      q: R`Firm D has \(F(K,L)=K+2L\). What is \(MRTS_{KL}\)?`,
+      choices: [R`\(-\tfrac12\) at every \((K,L)\)`, R`\(-2\) at every \((K,L)\)`, R`\(-\tfrac{L}{2K}\)`, R`Undefined: the isoquants have kinks`], answer: 0,
+      expl: R`\(MP_K=1\) and \(MP_L=2\), so \(MRTS_{KL}=-\frac12\) everywhere. The isoquants are straight lines with slope \(-\frac12\): one unit of labor replaces two units of capital.`
+    },
+    {
+      id: 'pr07', topic: 'production', type: 'mc',
+      q: R`Firm C uses only capital, with \(F(K)=\min\{3,\sqrt K+1\}\). What is \(MP_K\) for \(K&gt;4\)?`,
+      choices: [R`\(0\)`, R`\(\frac{1}{2\sqrt K}\)`, R`\(\frac14\)`, R`\(3\)`], answer: 0,
+      expl: R`The two pieces meet at \(K=4\). Beyond it \(F=3\) is flat, so extra capital adds nothing: \(MP_K=0\). At \(K=4\) the left derivative is \(\frac14\) and the right derivative is \(0\), so \(MP_K\) is undefined at the kink.`
     }
   ];
 })();

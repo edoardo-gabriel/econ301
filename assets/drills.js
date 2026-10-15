@@ -12,6 +12,37 @@
   const pw = v => (v === 1 ? '' : '^{' + v + '}'); // exponent: a^{1} -> a
 
   // =====================================================================
+  //  PRODUCTION & PROFIT
+  // =====================================================================
+  // Price taker with c(q) = m q^2 + k q. MC = 2mq + k; interior optimum q* = (p-k)/(2m), profit (p-k)^2/(4m).
+  addGen('profit', () => {
+    const m = pick([1, 2]), k = pick([2, 4, 6]);
+    const corner = rnd(5) === 0;
+    const p = corner ? k - pick([1, 2]) : k + 2 * m * pick([1, 2, 3, 4, 5]);
+    const q = corner ? 0 : (p - k) / (2 * m), pi = p * q - m * q * q - k * q;
+    return {
+      topic: 'production',
+      q: R`A price taker has cost function \(c(q)=${co(m)}q^2+${k}q\) and faces the market price \(p=${p}\). Find the profit-maximizing quantity and the resulting profit.`,
+      parts: [{ label: R`\(q^*\)`, answer: q }, { label: R`profit \(\pi\)`, answer: pi }],
+      sol: R`\(MC=${2 * m}q+${k}\) and \(MR=p=${p}\).<br>` + (corner
+        ? R`Setting \(p=MC\) gives \(q=\frac{${p}-${k}}{${2 * m}}=${f2((p - k) / (2 * m))}&lt;0\): infeasible. Since \(MC(0)=${k}&gt;${p}=p\), every unit costs more than it earns, so \(q^*=0\) and \(\pi=0\).`
+        : R`Set \(p=MC\): \(${p}=${2 * m}q+${k}\Rightarrow q^*=${q}\). Profit \(=pq-c(q)=${p}(${q})-(${co(m)}(${q * q})+${k * q})=${pi}\).`)
+    };
+  }, 'Profit maximization', 'calc');
+
+  // Cobb-Douglas MRTS = -(alpha/beta) L/K
+  addGen('mrts', () => {
+    const al = pick([1, 2, 3]), be = pick([1, 2, 3]), K = pick([2, 3, 4, 6]), L = pick([2, 3, 4, 6, 8]);
+    const m = -(al * L) / (be * K);
+    return {
+      topic: 'production', tol: 0.01,
+      q: R`A firm has production function \(F(K,L)=K^{${al}}L^{${be}}\). Find \(MRTS_{KL}\) at \((K,L)=(${K},${L})\). Round to 2 decimals (enter a signed number).`,
+      answer: m,
+      sol: R`\(MP_K=${al}K^{${al - 1}}L^{${be}}\) and \(MP_L=${be}K^{${al}}L^{${be - 1}}\), so \(MRTS_{KL}=-\frac{MP_K}{MP_L}=-\frac{${al}}{${be}}\cdot\frac{L}{K}=-\frac{${al}}{${be}}\cdot\frac{${L}}{${K}}=${fmt(m, 4)}\).`
+    };
+  }, 'MRTS of a Cobb-Douglas firm', 'calc');
+
+  // =====================================================================
   //  INVERSE / MULTI-PART CALCULATION DRILLS
   // =====================================================================
 

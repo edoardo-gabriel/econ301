@@ -8,7 +8,7 @@ A free, unofficial study companion for ECON 301 (Fall 2026). It turns the ideas 
 
 - **Topics**: one page per topic, with short explanations and graphs you can move.
   - Midterm 1: preferences and choice, budget sets, utility and indifference curves, optimal choice, demand curves.
-  - Midterm 2 (in progress): elasticities, substitution and income effects.
+  - Midterm 2 (in progress): elasticities, substitution and income effects, production and profit.
 - **Exercises**: every question in one place, a mock quiz, and drills that generate new numbers every time, including "work backwards" problems and "read the graph" problems.
 - **Math notation**: the symbols we use and what they mean, with a matching game and quizzes.
 - Dark mode, and it works on phones.

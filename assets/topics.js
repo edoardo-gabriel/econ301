@@ -16,11 +16,13 @@ window.TOPICS = [
   { id: 'elasticity', exam: 2, week: 4, href: 'elasticity.html', title: 'Elasticities', short: 'Elasticity',
     blurb: 'Own-price, cross-price and income elasticity. Substitutes, complements, normal and inferior goods.', status: 'new' },
   { id: 'effects', exam: 2, week: 5, href: 'effects.html', title: 'Substitution & income effects', short: 'Sub. & income',
-    blurb: 'Split a price change into a substitution effect and an income effect.', status: 'new' }
+    blurb: 'Split a price change into a substitution effect and an income effect.', status: 'new' },
+  { id: 'production', exam: 2, week: 6, href: 'production.html', title: 'Production & profit', short: 'Production',
+    blurb: 'Profit maximization, production functions, isoquants, MRTS and returns to scale.', status: 'new' }
 ];
 
 // Weekly update point #3: shown on the home page.
-window.SITE = { updated: 'October 12, 2026', note: 'Midterm 1 is complete. Midterm 2 has started: elasticities and substitution and income effects are up.' };
+window.SITE = { updated: 'October 15, 2026', note: 'Midterm 1 is complete. Midterm 2 is under way: elasticities, substitution and income effects, and production and profit are up.' };
 
 // Reference pages (shown in the Topics menu and on the home page).
 window.REFERENCE = [

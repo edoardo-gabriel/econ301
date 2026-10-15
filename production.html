@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Production & profit · Econ 301</title>
+<meta name="description" content="Profit maximization for a price taker, production functions, isoquants, MRTS and returns to scale, with interactive graphs.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script defer src="assets/topics.js"></script>
+<script defer src="assets/core.js"></script>
+<script defer src="assets/plot.js"></script>
+<script defer src="assets/econ.js"></script>
+<script defer src="assets/questions.js"></script>
+<script defer src="assets/figures.js"></script>
+<script defer src="assets/quiz.js"></script>
+<script defer src="assets/drills.js"></script>
+<script defer src="assets/pages/production.js"></script>
+</head>
+<body data-page="production">
+<main>
+  <div class="eyebrow">Week 6 · Midterm 2</div>
+  <h1>Production &amp; profit</h1>
+  <p class="lede">We switch sides of the market. A firm turns inputs into output and picks the quantity that earns the most profit. First the profit problem, then what is inside the firm: production functions, isoquants and returns to scale.</p>
+
+  <h2>Profit maximization</h2>
+  <p>Let \(q\ge0\) be the firm's output. Profit is revenue minus cost:</p>
+  \[ \pi(q)=R(q)-C(q). \]
+  <p>If the firm produces \(q&gt;0\), it chooses the quantity where marginal revenue equals marginal cost:</p>
+  \[ MR=\frac{dR}{dq}=\frac{dC}{dq}=MC. \]
+  <p>A <b>price taker</b> faces a fixed market price \(p\), so \(R(q)=pq\) and \(MR=p\). The condition becomes \(p=MC(q)\).</p>
+
+  <div class="callout warn">
+    <span class="label">Common trap</span>
+    <p>\(p=MC\) is required only at an <em>interior</em> optimum \(q^*&gt;0\). If \(p&lt;MC(0)\), solving \(p=MC\) gives a negative \(q\), which is infeasible. Every unit costs more than it earns, so the firm produces \(q^*=0\) (a corner solution).</p>
+  </div>
+
+  <div class="widget" id="w-profit">
+    <h3 class="widget-title">A price-taking firm <small>cost \(c(q)=q^2+kq\), so \(MC=2q+k\)</small></h3>
+    <div class="plot-host"></div>
+    <div class="ctl"></div>
+  </div>
+
+  <h3>Things to try</h3>
+  <ul>
+    <li>Slide the price below \(k\). What happens to \(q^*\) and to profit?</li>
+    <li>Raise \(k\) with the price fixed. Why does the firm produce less?</li>
+    <li>Look at the shaded gap between the price line and the \(MC\) curve. Why is it the profit when there is no fixed cost?</li>
+  </ul>
+
+  <div class="pop-marker" data-topic="production"></div>
+
+  <h2>Production functions</h2>
+  <p>A production function \(F:\mathbb R_+^2\to\mathbb R_+\) gives the output made from capital \(K\) and labor \(L\). For constants \(A,\alpha,\beta&gt;0\), the three standard forms are:</p>
+  <table style="border-collapse:collapse;width:100%;font-size:.95rem">
+    <tr style="text-align:left;color:var(--muted)"><th style="padding:6px">Name</th><th>\(F(K,L)\)</th><th>Inputs are…</th></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Cobb-Douglas</td><td>\(AK^\alpha L^\beta\)</td><td>imperfectly substitutable</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Perfect substitutes</td><td>\(\alpha K+\beta L\)</td><td>interchangeable at a fixed rate</td></tr>
+    <tr style="border-top:1px solid var(--line)"><td style="padding:8px">Perfect complements</td><td>\(\min\{\alpha K,\beta L\}\)</td><td>used in a fixed ratio</td></tr>
+  </table>
+  <div class="callout">
+    <span class="label">Different from utility</span>
+    <p>Utility is <em>ordinal</em>: only the ranking matters, so any increasing transformation is the same preference. A production function is <em>cardinal</em>: the output level itself matters, so transforming \(F\) changes the firm's technology.</p>
+  </div>
+
+  <h2>Isoquants, marginal products and the MRTS</h2>
+  <p>An <b>isoquant</b> collects all input combinations \((K,L)\) that produce the same output, just as an indifference curve collects bundles with the same utility. The marginal products are</p>
+  \[ MP_L=\frac{\partial F}{\partial L},\qquad MP_K=\frac{\partial F}{\partial K}, \]
+  <p>and the isoquant's slope is the <b>marginal rate of technical substitution</b>:</p>
+  \[ MRTS_{KL}=-\frac{MP_K}{MP_L}. \]
+  <p>It is the amount of labor the firm can give up for one more unit of capital while keeping output constant.</p>
+
+  <div class="widget split" id="w-iso">
+    <h3 class="widget-title">Isoquant explorer <small>slide along the isoquant and read the MRTS</small></h3>
+    <div>
+      <div class="plot-host"></div>
+      <div class="legend"><span><i style="background:var(--c1)"></i>isoquant for output \(q\)</span><span><i style="background:var(--muted)"></i>isoquant for \(2q\)</span></div>
+    </div>
+    <div class="ctl"></div>
+  </div>
+
+  <h3>Things to try</h3>
+  <ul>
+    <li>Cobb-Douglas: slide \(K\) to the right. Does the MRTS get steeper or flatter? Why does that make the isoquants bowed toward the origin?</li>
+    <li>Perfect substitutes: does the MRTS change along the isoquant? How is it related to \(\alpha\) and \(\beta\)?</li>
+    <li>Perfect complements: can you find an MRTS at the corner? (It is undefined.)</li>
+  </ul>
+
+  <h2>Returns to scale</h2>
+  <p>What happens to output when <em>both</em> inputs are multiplied by \(x&gt;1\)?</p>
+  <ul>
+    <li><b>Constant (CRS):</b> \(F(xK,xL)=xF(K,L)\). Doubling inputs doubles output.</li>
+    <li><b>Decreasing (DRS):</b> \(F(xK,xL)&lt;xF(K,L)\).</li>
+    <li><b>Increasing (IRS):</b> \(F(xK,xL)&gt;xF(K,L)\).</li>
+  </ul>
+  <p>For Cobb-Douglas, \((xK)^\alpha(xL)^\beta=x^{\alpha+\beta}F(K,L)\), so the answer is read off the exponents: \(\alpha+\beta=1\) is CRS, \(&lt;1\) is DRS, \(&gt;1\) is IRS. Perfect substitutes and perfect complements are always CRS.</p>
+  <div class="callout warn">
+    <span class="label">Common trap</span>
+    <p>Returns to scale are about scaling <em>both</em> inputs together. Diminishing marginal product is about raising <em>one</em> input with the other fixed. A function can have IRS and still have diminishing \(MP_K\).</p>
+  </div>
+
+  <h2>Worked exercises</h2>
+  <div class="exercise">
+    <h4>Profit maximization</h4>
+    <p>Firm A is a price taker with cost function \(c(q)=q^2+4q\). (a) Find \(MC\) and \(MR\) when \(p=10\). (b) Find the profit-maximizing quantity and the profit. (c) What is the profit-maximizing quantity if the price falls to \(p=3\)?</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>(a) \(MC=\frac{dc}{dq}=2q+4\). For a price taker \(MR=p=10\).</p>
+      <p>(b) \(10=2q+4\Rightarrow q^*=3\). Profit: \(\pi=10(3)-(9+12)=9\). \(MC\) is increasing, so this is a maximum.</p>
+      <p>(c) \(3=2q+4\) gives \(q=-\tfrac12\), which is infeasible. Since \(MC(0)=4&gt;3=p\), profit \(\pi(q)=-q-q^2\) falls as \(q\) rises, so \(q^*=0\) and \(\pi=0\).</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>MRTS of a Cobb-Douglas firm</h4>
+    <p>Firm B has \(F(K,L)=K^{1/3}L^{1/2}\). Find \(MP_L\), \(MP_K\) and \(MRTS_{KL}\), and evaluate the MRTS at \((K,L)=(4,6)\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>\(MP_L=\tfrac12K^{1/3}L^{-1/2}\) and \(MP_K=\tfrac13K^{-2/3}L^{1/2}\).</p>
+      <p>\(MRTS_{KL}=-\dfrac{\tfrac13K^{-2/3}L^{1/2}}{\tfrac12K^{1/3}L^{-1/2}}=-\dfrac23\cdot\dfrac LK\).</p>
+      <p>At \((4,6)\): \(-\tfrac23\cdot\tfrac64=-1\). The firm can give up one unit of labor for one more unit of capital at constant output.</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>Returns to scale</h4>
+    <p>Classify (a) \(F(K,L)=K^{3/4}L^{1/2}\) and (b) \(F(K,L)=\min\{2K,L\}\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>(a) \(F(xK,xL)=x^{3/4+1/2}K^{3/4}L^{1/2}=x^{5/4}F(K,L)&gt;xF(K,L)\): <b>increasing</b> returns (exponents sum to \(5/4&gt;1\)).</p>
+      <p>(b) \(\min\{2xK,xL\}=x\min\{2K,L\}=xF(K,L)\): <b>constant</b> returns.</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>A piecewise production function</h4>
+    <p>Firm C uses only capital, with \(F(K)=\min\{3,\ \sqrt K+1\}\). Find \(MP_K\).</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>The pieces meet where \(\sqrt K+1=3\), i.e. \(K=4\). So \(F=\sqrt K+1\) for \(K&lt;4\) and \(F=3\) for \(K\ge4\).</p>
+      <p>\(MP_K=\dfrac{1}{2\sqrt K}\) for \(K&lt;4\) and \(MP_K=0\) for \(K&gt;4\). At \(K=4\) the left derivative is \(1/4\) and the right derivative is \(0\), so \(MP_K\) is <b>undefined</b> at the kink. Capital has diminishing marginal product, and beyond \(K=4\) it adds no output at all.</p>
+    </details>
+  </div>
+  <div class="exercise">
+    <h4>Isoquants of perfect substitutes</h4>
+    <p>Firm D has \(F(K,L)=K+2L\). Describe the isoquants for \(q=4\) and \(q=8\) and find the MRTS.</p>
+    <details class="solution"><summary>Show solution</summary>
+      <p>Solve \(K+2L=q\) for \(L=\frac{q-K}{2}\). For \(q=4\) the intercepts are \((K,L)=(4,0)\) and \((0,2)\); for \(q=8\) they are \((8,0)\) and \((0,4)\).</p>
+      <p>Both are straight lines with slope \(-1/2\); the one farther from the origin gives more output. Also \(MP_K=1\), \(MP_L=2\), so \(MRTS_{KL}=-\tfrac12\) everywhere: one unit of \(L\) replaces two units of \(K\).</p>
+    </details>
+  </div>
+
+  <h2>Check yourself</h2>
+  <div class="quiz-set" data-topic="production"></div>
+  <div class="num-set" data-gens="profit,mrts" data-label="Production &amp; profit"></div>
+
+  <div id="pagenav"></div>
+</main>
+</body>
+</html>
